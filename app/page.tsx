@@ -135,83 +135,74 @@ const total = dayTasks.reduce(
   };
 
   // 🔥 CHAT
-  const sendMessage = async () => {
-    if (!chatInput.trim()) return;
+ const sendMessage = async () => {
+  if (!chatInput.trim() || chatLoading) return;
 
-    setChatLoading(true);
+  setChatLoading(true);
 
+  const userMsg = { role: "user", content: chatInput };
+  setChatHistory(prev => [...prev, userMsg]);
+
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: chatInput,
+        tasks
+      })
+    });
+
+    const data = await res.json();
+
+    let aiText = data.message || "No response";
+
+    // 🔥 Try parsing structured response
     try {
-      const userMsg = { role: "user", content: chatInput };
-      setChatHistory(prev => [...prev, userMsg]);
+      const parsed = JSON.parse(data.message);
 
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: chatInput,
-          tasks
-        })
-      });
+      if (parsed.action === "update" && parsed.updates) {
+        const updatedIds = parsed.updates.map((u: any) => u._id);
 
-      const data = await res.json();
+        // 🔥 Update tasks
+        setTasks(prev =>
+          prev.map(t => {
+            const update = parsed.updates.find((u: any) => u._id === t._id);
+            return update ? { ...t, date: update.newDate } : t;
+          })
+        );
 
-      if (data.updatedTasks) {
-        setTasks(data.updatedTasks);
+        // 🔥 Highlight updated tasks
+        setHighlightedTasks(updatedIds);
+
+        setTimeout(() => {
+          setHighlightedTasks([]);
+        }, 2000);
+
+        // 🔥 Better UX message
+        aiText = `✅ Moved ${updatedIds.length} task(s) successfully`;
       }
 
-      let aiText = "No response";
-
-try {
-  const parsed = JSON.parse(data.message);
-
-  // 🔥 APPLY TASK UPDATES
-  if (parsed.action === "update" && parsed.updates) {
-  const updatedIds = parsed.updates.map((u: any) => u._id);
-
-  setTasks(prev =>
-    prev.map(t => {
-      const update = parsed.updates.find((u: any) => u._id === t._id);
-      return update ? { ...t, date: update.newDate } : t;
-    })
-  );
-
-  // 🔥 Highlight updated tasks
-  setHighlightedTasks(updatedIds);
-
-  // Remove highlight after 2 sec
-  setTimeout(() => {
-    setHighlightedTasks([]);
-  }, 2000);
-
-  aiText = `✅ Updated ${updatedIds.length} task(s)`;
-} else {
-    aiText = data.message;
-  }
-
-} catch {
-  // normal text response
-  aiText = data.message;
-}
-
-const aiMsg = {
-  role: "ai",
-  content: aiText
-};
-
-setChatHistory(prev => [...prev, aiMsg]);
-
-      setChatHistory(prev => [...prev, aiMsg]);
-
     } catch {
-      setChatHistory(prev => [
-        ...prev,
-        { role: "ai", content: "Error talking to AI" }
-      ]);
+      // not JSON → normal response
     }
 
-    setChatInput("");
-    setChatLoading(false);
-  };
+    // ✅ SINGLE RESPONSE (fixes duplication)
+    setChatHistory(prev => [
+      ...prev,
+      { role: "ai", content: aiText }
+    ]);
+
+  } catch {
+    setChatHistory(prev => [
+      ...prev,
+      { role: "ai", content: "Error talking to AI" }
+    ]);
+  }
+
+  setChatInput("");
+  setChatLoading(false);
+};
 
   return (
     <main className="min-h-screen bg-black text-white p-6">
