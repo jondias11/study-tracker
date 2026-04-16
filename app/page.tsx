@@ -85,10 +85,13 @@ export default function Page() {
 
   // 🔥 DAILY PROGRESS
   const completed = dayTasks
-    .filter(t => t.completed)
-    .reduce((sum, t) => sum + t.duration, 0);
+  .filter((t: Task) => t.completed)
+  .reduce((sum, t: Task) => sum + t.duration, 0);
 
-  const total = dayTasks.reduce((sum, t) => sum + t.duration, 0);
+  const total = dayTasks.reduce(
+  (sum: number, t: Task) => sum + t.duration,
+  0
+);
 
   // 🔥 TOGGLE TASK
   const toggleTask = async (task: Task) => {
