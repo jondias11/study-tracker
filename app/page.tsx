@@ -216,6 +216,42 @@ setChatHistory(prev => [...prev, aiMsg]);
   return (
     <main className="min-h-screen bg-black text-white p-6">
       <div className="max-w-2xl mx-auto">
+        {/* 🔥 SUBJECT PROGRESS */}
+<div className="flex gap-4 overflow-x-auto mb-6">
+  {subjectProgress.map(([name, sub]: any, i) => {
+    const percent = Math.round(
+      (sub.doneHours / sub.totalHours) * 100
+    );
+
+    return (
+      <div key={i} className="flex flex-col items-center min-w-[70px]">
+        <div className="relative w-16 h-16">
+          <svg className="w-16 h-16 rotate-[-90deg]">
+            <circle cx="32" cy="32" r="28" stroke="#333" strokeWidth="4" fill="none" />
+            <circle
+              cx="32"
+              cy="32"
+              r="28"
+              stroke="white"
+              strokeWidth="4"
+              fill="none"
+              strokeDasharray={175}
+              strokeDashoffset={175 - (175 * percent) / 100}
+            />
+          </svg>
+
+          <div className="absolute inset-0 flex items-center justify-center text-sm">
+            {percent}%
+          </div>
+        </div>
+
+        <p className="text-xs mt-2 text-gray-400 text-center">
+          {name}
+        </p>
+      </div>
+    );
+  })}
+</div>
 
         {/* HEADER */}
         <div className="flex items-center justify-between mb-6">
