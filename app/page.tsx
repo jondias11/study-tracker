@@ -257,7 +257,7 @@ setChatHistory(prev => [...prev, aiMsg]);
         {/* TASKS */}
         
         <div className="space-y-3 mb-6">
-          {dayTasks.map(task => (
+          {dayTasks.map((task: Task) => (
             <div
   key={task._id}
   className={`flex items-center justify-between p-4 rounded-xl border transition-all duration-300
