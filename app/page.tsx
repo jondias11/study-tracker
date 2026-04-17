@@ -12,8 +12,6 @@ type Task = {
 };
 
 export default function Page() {
-  const [aiResponse, setAiResponse] = useState<string | null>(null);
-  const [loadingAI, setLoadingAI] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
@@ -46,21 +44,21 @@ export default function Page() {
 
   const sortedDates = Object.keys(groupedTasks).sort();
 
-  // SELECT TODAY (LOCAL TIME FIX)
+  // SELECT TODAY (LOCAL TIME SAFE)
   useEffect(() => {
     if (currentIndex !== null) return;
     if (sortedDates.length === 0) return;
 
     const today = new Date().toLocaleDateString("en-CA");
 
-    let todayIndex = sortedDates.indexOf(today);
+    let index = sortedDates.indexOf(today);
 
-    if (todayIndex === -1) {
-      todayIndex = sortedDates.findIndex(d => d >= today);
-      if (todayIndex === -1) todayIndex = sortedDates.length - 1;
+    if (index === -1) {
+      index = sortedDates.findIndex(d => d >= today);
+      if (index === -1) index = sortedDates.length - 1;
     }
 
-    setCurrentIndex(todayIndex);
+    setCurrentIndex(index);
   }, [sortedDates, currentIndex]);
 
   const currentDate =
@@ -68,18 +66,15 @@ export default function Page() {
 
   const dayTasks = currentDate ? groupedTasks[currentDate] || [] : [];
 
-  // SUBJECT PROGRESS
+  // SUBJECT PROGRESS (HOURS BASED)
   const subjectProgress = Object.entries(
     tasks.reduce((acc: any, task) => {
       if (!acc[task.category]) {
-        acc[task.category] = { totalHours: 0, doneHours: 0 };
+        acc[task.category] = { total: 0, done: 0 };
       }
 
-      acc[task.category].totalHours += task.duration;
-
-      if (task.completed) {
-        acc[task.category].doneHours += task.duration;
-      }
+      acc[task.category].total += task.duration;
+      if (task.completed) acc[task.category].done += task.duration;
 
       return acc;
     }, {})
@@ -105,30 +100,7 @@ export default function Page() {
     );
   };
 
-  // AI PLAN (FIXED)
-  const adjustPlan = async () => {
-    setLoadingAI(true);
-
-    try {
-      const res = await fetch("/api/adjust-plan", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tasks })
-      });
-
-      const data = await res.json();
-
-      setAiResponse(
-        data.error ? "AI error: " + data.error : data.message
-      );
-    } catch {
-      setAiResponse("Failed to connect to AI");
-    }
-
-    setLoadingAI(false);
-  };
-
-  // CHAT (FIXED + DURATION SUPPORT)
+  // AI CHAT
   const sendMessage = async () => {
     if (!chatInput.trim() || chatLoading) return;
 
@@ -151,45 +123,45 @@ export default function Page() {
 
       let aiText = data.message || "Done";
 
-let parsed;
+      // 🔥 PARSE AI JSON
+      let parsed;
+      try {
+        parsed = JSON.parse(data.message);
+      } catch {
+        parsed = null;
+      }
 
-try {
-  parsed = JSON.parse(data.message);
-} catch {
-  parsed = null;
-}
+      // UPDATE (date + duration)
+      if (parsed?.action === "update" && parsed.updates) {
+        const updatedIds = parsed.updates.map((u: any) => u._id);
 
-// 🔥 HANDLE UPDATE
-if (parsed?.action === "update" && parsed.updates) {
-  const updatedIds = parsed.updates.map((u: any) => u._id);
+        setTasks(prev =>
+          prev.map(t => {
+            const update = parsed.updates.find((u: any) => u._id === t._id);
+            if (!update) return t;
 
-  setTasks(prev =>
-    prev.map(t => {
-      const update = parsed.updates.find((u: any) => u._id === t._id);
-      if (!update) return t;
+            return {
+              ...t,
+              date: update.newDate ?? t.date,
+              duration: update.newDuration ?? t.duration
+            };
+          })
+        );
 
-      return {
-        ...t,
-        date: update.newDate ?? t.date,
-        duration: update.newDuration ?? t.duration,
-      };
-    })
-  );
+        setHighlightedTasks(updatedIds);
+        setTimeout(() => setHighlightedTasks([]), 2000);
 
-  setHighlightedTasks(updatedIds);
-  setTimeout(() => setHighlightedTasks([]), 2000);
+        aiText = `✅ Updated ${updatedIds.length} task(s)`;
+      }
 
-  aiText = `✅ Updated ${updatedIds.length} task(s)`;
-}
+      // DELETE
+      else if (parsed?.action === "delete" && parsed.ids) {
+        setTasks(prev =>
+          prev.filter(t => !parsed.ids.includes(t._id))
+        );
 
-// 🔥 HANDLE DELETE
-else if (parsed?.action === "delete" && parsed.ids) {
-  setTasks(prev =>
-    prev.filter(t => !parsed.ids.includes(t._id))
-  );
-
-  aiText = `🗑️ Removed ${parsed.ids.length} task(s)`;
-}
+        aiText = `🗑️ Removed ${parsed.ids.length} task(s)`;
+      }
 
       setChatHistory(prev => [...prev, { role: "ai", content: aiText }]);
 
@@ -211,9 +183,7 @@ else if (parsed?.action === "delete" && parsed.ids) {
         {/* SUBJECT PROGRESS */}
         <div className="flex gap-4 overflow-x-auto mb-6">
           {subjectProgress.map(([name, sub]: any, i) => {
-            const percent = Math.round(
-              (sub.doneHours / sub.totalHours) * 100
-            );
+            const percent = Math.round((sub.done / sub.total) * 100);
 
             return (
               <div key={i} className="flex flex-col items-center min-w-[70px]">
@@ -252,7 +222,9 @@ else if (parsed?.action === "delete" && parsed.ids) {
               setCurrentIndex(i => Math.max((i ?? 0) - 1, 0))
             }
             className="w-10 h-10 rounded-full bg-white/10"
-          >‹</button>
+          >
+            ‹
+          </button>
 
           <h1 className="text-xl font-semibold">
             {currentDate ? new Date(currentDate).toDateString() : "Loading..."}
@@ -265,7 +237,9 @@ else if (parsed?.action === "delete" && parsed.ids) {
               )
             }
             className="w-10 h-10 rounded-full bg-white/10"
-          >›</button>
+          >
+            ›
+          </button>
         </div>
 
         {/* TASKS */}
@@ -273,94 +247,97 @@ else if (parsed?.action === "delete" && parsed.ids) {
           {dayTasks.map((task: Task) => (
             <div
               key={task._id}
-              className={`p-4 rounded-xl border ${
+              className={`flex items-center justify-between p-4 rounded-xl border transition ${
                 highlightedTasks.includes(task._id)
                   ? "bg-green-900 border-green-500"
                   : "bg-gray-900 border-gray-800"
               }`}
             >
-              <p>{task.title}</p>
-              <p className="text-sm text-gray-400">{task.duration} hrs</p>
+              <div>
+                <p className="font-medium">{task.title}</p>
+                <p className="text-sm text-gray-400">
+                  {task.duration} hrs
+                </p>
+              </div>
 
               <input
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => toggleTask(task)}
+                className="w-5 h-5 accent-white"
               />
             </div>
           ))}
         </div>
 
-{/* 🔥 CHATBOX */}
-<div className="mt-8 bg-zinc-900 p-4 rounded-2xl border border-gray-800">
+        {/* CHAT */}
+        <div className="mt-8 bg-zinc-900 p-4 rounded-2xl border border-gray-800">
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-lg font-semibold">💬 AI Assistant</h2>
 
-  <div className="flex justify-between items-center mb-3">
-    <h2 className="text-lg font-semibold">💬 AI Assistant</h2>
+            <button
+              onClick={() => setChatHistory([])}
+              className="text-xs px-2 py-1 rounded bg-white/10"
+            >
+              Clear
+            </button>
+          </div>
 
-    <button
-      onClick={() => setChatHistory([])}
-      className="text-xs px-2 py-1 rounded bg-white/10 hover:bg-white/20"
-    >
-      Clear
-    </button>
-  </div>
+          <div className="h-52 overflow-y-auto mb-3 space-y-3">
+            {chatHistory.map((msg, i) => (
+              <div
+                key={i}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm ${
+                    msg.role === "user"
+                      ? "bg-white text-black"
+                      : "bg-zinc-800 text-gray-300"
+                  }`}
+                >
+                  {msg.content}
+                </div>
+              </div>
+            ))}
 
-  <div className="h-52 overflow-y-auto mb-3 space-y-3 pr-1">
-    {chatHistory.map((msg, i) => (
-      <div
-        key={i}
-        className={`flex ${
-          msg.role === "user" ? "justify-end" : "justify-start"
-        }`}
-      >
-        <div
-          className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm ${
-            msg.role === "user"
-              ? "bg-white text-black"
-              : "bg-zinc-800 text-gray-300"
-          }`}
-        >
-          {msg.content}
+            {chatLoading && (
+              <div className="text-sm text-gray-500">AI is typing...</div>
+            )}
+
+            <div ref={chatEndRef} />
+          </div>
+
+          <div className="flex gap-2">
+            <input
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && chatInput.trim() && !chatLoading) {
+                  sendMessage();
+                }
+              }}
+              placeholder="Ask or modify your plan..."
+              className="flex-1 px-3 py-2 rounded-lg bg-black border border-gray-700 text-sm"
+            />
+
+            <button
+              onClick={sendMessage}
+              disabled={!chatInput.trim() || chatLoading}
+              className={`px-4 rounded-lg font-medium ${
+                chatInput.trim() && !chatLoading
+                  ? "bg-white text-black"
+                  : "bg-gray-700 text-gray-400 cursor-not-allowed"
+              }`}
+            >
+              {chatLoading ? "..." : "Send"}
+            </button>
+          </div>
         </div>
+
       </div>
-    ))}
-
-    {chatLoading && (
-      <div className="text-sm text-gray-500">AI is typing...</div>
-    )}
-
-    <div ref={chatEndRef} />
-  </div>
-
-  <div className="flex gap-2">
-    <input
-      value={chatInput}
-      onChange={(e) => setChatInput(e.target.value)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" && chatInput.trim() && !chatLoading) {
-          sendMessage();
-        }
-      }}
-      placeholder="Ask or modify your plan..."
-      className="flex-1 px-3 py-2 rounded-lg bg-black border border-gray-700 text-sm"
-    />
-
-    <button
-      onClick={sendMessage}
-      disabled={!chatInput.trim() || chatLoading}
-      className={`px-4 rounded-lg font-medium ${
-        chatInput.trim() && !chatLoading
-          ? "bg-white text-black"
-          : "bg-gray-700 text-gray-400 cursor-not-allowed"
-      }`}
-    >
-      {chatLoading ? "..." : "Send"}
-    </button>
-  </div>
-
-</div>
-
-</div>
-</main>
+    </main>
   );
 }
