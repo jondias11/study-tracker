@@ -135,7 +135,7 @@ const total = dayTasks.reduce(
   };
 
   // 🔥 CHAT
- const sendMessage = async () => {
+const sendMessage = async () => {
   if (!chatInput.trim() || chatLoading) return;
 
   setChatLoading(true);
@@ -155,39 +155,38 @@ const total = dayTasks.reduce(
 
     const data = await res.json();
 
-    let aiText = data.message || "No response";
+    let aiText = data.message || "Done";
 
-    // 🔥 Try parsing structured response
-    try {
-      const parsed = JSON.parse(data.message);
+    // 🔥 HANDLE UPDATE
+    if (data.action === "update" && data.updates) {
+      const updatedIds = data.updates.map((u: any) => u._id);
 
-      if (parsed.action === "update" && parsed.updates) {
-        const updatedIds = parsed.updates.map((u: any) => u._id);
+      setTasks(prev =>
+        prev.map(t => {
+          const update = data.updates.find((u: any) => u._id === t._id);
+          return update ? { ...t, date: update.newDate } : t;
+        })
+      );
 
-        // 🔥 Update tasks
-        setTasks(prev =>
-          prev.map(t => {
-            const update = parsed.updates.find((u: any) => u._id === t._id);
-            return update ? { ...t, date: update.newDate } : t;
-          })
-        );
+      setHighlightedTasks(updatedIds);
 
-        // 🔥 Highlight updated tasks
-        setHighlightedTasks(updatedIds);
+      setTimeout(() => {
+        setHighlightedTasks([]);
+      }, 2000);
 
-        setTimeout(() => {
-          setHighlightedTasks([]);
-        }, 2000);
-
-        // 🔥 Better UX message
-        aiText = `✅ Moved ${updatedIds.length} task(s) successfully`;
-      }
-
-    } catch {
-      // not JSON → normal response
+      aiText = `✅ Moved ${updatedIds.length} task(s)`;
     }
 
-    // ✅ SINGLE RESPONSE (fixes duplication)
+    // 🔥 HANDLE DELETE
+    else if (data.action === "delete" && data.ids) {
+      setTasks(prev =>
+        prev.filter(t => !data.ids.includes(t._id))
+      );
+
+      aiText = `🗑️ Removed ${data.ids.length} task(s)`;
+    }
+
+    // ✅ SINGLE RESPONSE
     setChatHistory(prev => [
       ...prev,
       { role: "ai", content: aiText }
