@@ -8,9 +8,9 @@ export async function POST(req) {
 
     const { message, tasks } = await req.json();
 
-  const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0];
 
-const prompt = `
+    const prompt = `
 You are an intelligent study planner AI.
 
 TODAY'S DATE: ${today}
@@ -45,7 +45,6 @@ Understand natural commands like:
 RULES FOR INTERPRETATION:
 
 - "tomorrow" = today + 1 day
-- "next day" = +1 day
 - "in 2 days" = +2 days
 - "next week" = +7 days
 
@@ -65,6 +64,13 @@ Return ONLY JSON:
   "updates": [
     { "_id": "...", "newDate": "YYYY-MM-DD" }
   ]
+}
+
+IF DELETING TASKS:
+
+{
+  "action": "delete",
+  "ids": ["task_id"]
 }
 
 ---
@@ -95,41 +101,23 @@ IMPORTANT:
       return Response.json({ message: output });
     }
 
-    // 🔥 If AI wants to update tasks
+    // 🔥 HANDLE UPDATE
     if (parsed.action === "update" && parsed.updates) {
-  const updatedIds = parsed.updates.map((u: any) => u._id);
-
-  setTasks(prev =>
-    prev.map(t => {
-      const update = parsed.updates.find((u: any) => u._id === t._id);
-      return update ? { ...t, date: update.newDate } : t;
-    })
-  );
-
-  setHighlightedTasks(updatedIds);
-
-  setTimeout(() => {
-    setHighlightedTasks([]);
-  }, 2000);
-
-  aiText = `✅ Updated ${updatedIds.length} task(s)`;
-}
-
-// 🔥 NEW: HANDLE DELETE
-else if (parsed.action === "delete" && parsed.ids) {
-  setTasks(prev =>
-    prev.filter(t => !parsed.ids.includes(t._id))
-  );
-
-  aiText = `🗑️ Removed ${parsed.ids.length} task(s)`;
-}
-
       return Response.json({
-        message: "Tasks updated successfully ✅",
-        updatedTasks
+        action: "update",
+        updates: parsed.updates,
       });
     }
 
+    // 🔥 HANDLE DELETE
+    if (parsed.action === "delete" && parsed.ids) {
+      return Response.json({
+        action: "delete",
+        ids: parsed.ids,
+      });
+    }
+
+    // fallback
     return Response.json({ message: output });
 
   } catch (err) {
