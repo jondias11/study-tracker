@@ -8,35 +8,76 @@ export async function POST(req) {
 
     const { message, tasks } = await req.json();
 
-    const prompt = `
-You are an intelligent study planner assistant.
+  const today = new Date().toISOString().split("T")[0];
 
-User message:
+const prompt = `
+You are an intelligent study planner AI.
+
+TODAY'S DATE: ${today}
+
+You are given tasks with:
+- _id
+- title
+- date (YYYY-MM-DD)
+- completed (true/false)
+- category
+- duration
+
+USER REQUEST:
 "${message}"
 
-Here is their current schedule:
+TASK DATA:
 ${JSON.stringify(tasks)}
 
-IMPORTANT:
-If user wants to MODIFY tasks, return ONLY JSON in this format:
+---
+
+YOUR JOB:
+
+Understand natural commands like:
+- "move everything tomorrow"
+- "shift DBMS by 2 days"
+- "push incomplete tasks forward"
+- "lighten today"
+- "i missed yesterday"
+
+---
+
+RULES FOR INTERPRETATION:
+
+- "tomorrow" = today + 1 day
+- "next day" = +1 day
+- "in 2 days" = +2 days
+- "next week" = +7 days
+
+- ONLY move incomplete tasks unless explicitly told otherwise
+- Maintain task order
+- Do not exceed 10 hours per day
+- Prioritize: DSA > DBMS > PoM > others
+
+---
+
+IF MODIFYING TASKS:
+
+Return ONLY JSON:
 
 {
   "action": "update",
   "updates": [
-    {
-      "category": "DBMS",
-      "newDate": "2026-04-22"
-    }
+    { "_id": "...", "newDate": "YYYY-MM-DD" }
   ]
 }
 
-Rules:
-- Only include tasks that need change
-- Use exact category names
-- Use YYYY-MM-DD format
-- If no change needed → return normal text
+---
 
-Do NOT mix text + JSON.
+IF NO CHANGE NEEDED:
+
+Return short advice (max 3 lines)
+
+---
+
+IMPORTANT:
+- NO explanation if returning JSON
+- NO mixing JSON + text
 `;
 
     const response = await groq.chat.completions.create({
