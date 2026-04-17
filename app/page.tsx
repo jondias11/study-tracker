@@ -283,7 +283,76 @@ export default function Page() {
           ))}
         </div>
 
+{/* 🔥 CHATBOX */}
+<div className="mt-8 bg-zinc-900 p-4 rounded-2xl border border-gray-800">
+
+  <div className="flex justify-between items-center mb-3">
+    <h2 className="text-lg font-semibold">💬 AI Assistant</h2>
+
+    <button
+      onClick={() => setChatHistory([])}
+      className="text-xs px-2 py-1 rounded bg-white/10 hover:bg-white/20"
+    >
+      Clear
+    </button>
+  </div>
+
+  <div className="h-52 overflow-y-auto mb-3 space-y-3 pr-1">
+    {chatHistory.map((msg, i) => (
+      <div
+        key={i}
+        className={`flex ${
+          msg.role === "user" ? "justify-end" : "justify-start"
+        }`}
+      >
+        <div
+          className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm ${
+            msg.role === "user"
+              ? "bg-white text-black"
+              : "bg-zinc-800 text-gray-300"
+          }`}
+        >
+          {msg.content}
+        </div>
       </div>
-    </main>
+    ))}
+
+    {chatLoading && (
+      <div className="text-sm text-gray-500">AI is typing...</div>
+    )}
+
+    <div ref={chatEndRef} />
+  </div>
+
+  <div className="flex gap-2">
+    <input
+      value={chatInput}
+      onChange={(e) => setChatInput(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && chatInput.trim() && !chatLoading) {
+          sendMessage();
+        }
+      }}
+      placeholder="Ask or modify your plan..."
+      className="flex-1 px-3 py-2 rounded-lg bg-black border border-gray-700 text-sm"
+    />
+
+    <button
+      onClick={sendMessage}
+      disabled={!chatInput.trim() || chatLoading}
+      className={`px-4 rounded-lg font-medium ${
+        chatInput.trim() && !chatLoading
+          ? "bg-white text-black"
+          : "bg-gray-700 text-gray-400 cursor-not-allowed"
+      }`}
+    >
+      {chatLoading ? "..." : "Send"}
+    </button>
+  </div>
+
+</div>
+
+</div>
+</main>
   );
 }
