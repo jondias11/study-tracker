@@ -62,7 +62,11 @@ Return ONLY JSON:
 {
   "action": "update",
   "updates": [
-    { "_id": "...", "newDate": "YYYY-MM-DD" }
+    {
+      "_id": "...",
+      "newDate": "YYYY-MM-DD",
+      "newDuration": 2
+    }
   ]
 }
 
