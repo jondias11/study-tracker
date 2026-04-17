@@ -1,111 +1,203 @@
-export const tasks = [
-  // APR 17
-  { date: "2026-04-17", title: "DSA Lectures 1–10", category: "DSA", duration: 2.5 },
-  { date: "2026-04-17", title: "PoM PPT 1", category: "PoM", duration: 1.5 },
-  { date: "2026-04-17", title: "MUP Slides 1–2", category: "MUP", duration: 1.5 },
-  { date: "2026-04-17", title: "DBMS Chapter 1", category: "DBMS", duration: 1.5 },
-  { date: "2026-04-17", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-17", title: "ML", category: "ML", duration: 1 },
+const tasks = [
 
-  // APR 18
-  { date: "2026-04-18", title: "DSA Lectures 11–15", category: "DSA", duration: 5 },
-  { date: "2026-04-18", title: "Water Videos 1–6", category: "Water", duration: 1 },
-  { date: "2026-04-18", title: "PoM PPT 2", category: "PoM", duration: 1 },
-  { date: "2026-04-18", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-18", title: "ML", category: "ML", duration: 1 },
+  // ===== APR 18 =====
+  { title: "DSA Lectures 1–10", duration: 2.5, date: "2026-04-18", category: "DSA", completed: false },
+  { title: "DSA Lecture 11", duration: 1, date: "2026-04-18", category: "DSA", completed: false },
+  { title: "DSA Lecture 12", duration: 1, date: "2026-04-18", category: "DSA", completed: false },
 
-  // APR 19
-  { date: "2026-04-19", title: "DSA Lectures 16–20", category: "DSA", duration: 5 },
-  { date: "2026-04-19", title: "MUP Slides 3–4", category: "MUP", duration: 1.5 },
-  { date: "2026-04-19", title: "DBMS Chapter 2", category: "DBMS", duration: 0.5 },
-  { date: "2026-04-19", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-19", title: "ML", category: "ML", duration: 1 },
+  { title: "PoM PPT 1", duration: 1.5, date: "2026-04-18", category: "PoM", completed: false },
+  { title: "PoM PPT 2", duration: 1.5, date: "2026-04-18", category: "PoM", completed: false },
 
-  // APR 20
-  { date: "2026-04-20", title: "MUP Lab Prep", category: "MUP", duration: 3 },
-  { date: "2026-04-20", title: "DSA Lectures 21–24", category: "DSA", duration: 4 },
-  { date: "2026-04-20", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-20", title: "ML", category: "ML", duration: 0.75 },
-  { date: "2026-04-20", title: "PoM PPT 3", category: "PoM", duration: 0.25 },
+  { title: "MUP Slide 1", duration: 0.5, date: "2026-04-18", category: "MUP", completed: false },
+  { title: "MUP Slide 2", duration: 0.5, date: "2026-04-18", category: "MUP", completed: false },
 
-  // APR 21
-  { date: "2026-04-21", title: "DSA Lectures 25–30", category: "DSA", duration: 6 },
-  { date: "2026-04-21", title: "Water Videos 7–12", category: "Water", duration: 1.25 },
-  { date: "2026-04-21", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-21", title: "ML", category: "ML", duration: 0.75 },
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-18", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-18", category: "ML", completed: false },
 
-  // APR 22
-  { date: "2026-04-22", title: "DSA Lectures 31–33", category: "DSA", duration: 3 },
-  { date: "2026-04-22", title: "DBMS Chapters 3–4", category: "DBMS", duration: 2 },
-  { date: "2026-04-22", title: "PoM PPT 4–5", category: "PoM", duration: 2.25 },
-  { date: "2026-04-22", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-22", title: "ML", category: "ML", duration: 0.75 },
+  // ===== APR 19 =====
+  ...[13,14,15,16,17,18].map(i => ({
+    title: `DSA Lecture ${i}`, duration: 1, date: "2026-04-19", category: "DSA", completed: false
+  })),
 
-  // APR 23
-  { date: "2026-04-23", title: "DSA Review", category: "DSA", duration: 3.5 },
-  { date: "2026-04-23", title: "Water Videos 13–25", category: "Water", duration: 2.25 },
-  { date: "2026-04-23", title: "MUP Slides 5–6", category: "MUP", duration: 1.5 },
-  { date: "2026-04-23", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-23", title: "ML", category: "ML", duration: 0.75 },
+  { title: "DBMS Chapter 1", duration: 1.5, date: "2026-04-19", category: "DBMS", completed: false },
+  { title: "PoM PPT 3", duration: 1.5, date: "2026-04-19", category: "PoM", completed: false },
 
-  // APR 24
-  { date: "2026-04-24", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-24", title: "ML", category: "ML", duration: 0.75 },
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-19", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-19", category: "ML", completed: false },
 
-  // APR 25
-  { date: "2026-04-25", title: "DSA Coding", category: "DSA Coding", duration: 1 },
-  { date: "2026-04-25", title: "ML", category: "ML", duration: 0.75 },
+  // ===== APR 20 =====
+  { title: "MUP Lab Prep", duration: 3, date: "2026-04-20", category: "MUP", completed: false },
 
-  // APR 26
-  { date: "2026-04-26", title: "PoM PPT 6–7", category: "PoM", duration: 3 },
-  { date: "2026-04-26", title: "MUP Slides 7–11", category: "MUP", duration: 3.75 },
-  { date: "2026-04-26", title: "DSA Lecture 34", category: "DSA", duration: 1 },
-  { date: "2026-04-26", title: "DBMS Chapters 5–6", category: "DBMS", duration: 1 },
-  { date: "2026-04-26", title: "DSA Coding", category: "DSA Coding", duration: 0.75 },
-  { date: "2026-04-26", title: "ML", category: "ML", duration: 0.5 },
+  ...[19,20,21,22,23].map(i => ({
+    title: `DSA Lecture ${i}`, duration: 1, date: "2026-04-20", category: "DSA", completed: false
+  })),
 
-  // APR 27
-  { date: "2026-04-27", title: "Water Videos 26–45", category: "Water", duration: 3 },
-  { date: "2026-04-27", title: "PoM PPT 8–9", category: "PoM", duration: 3 },
-  { date: "2026-04-27", title: "DBMS Chapters 7–9", category: "DBMS", duration: 2.25 },
-  { date: "2026-04-27", title: "DSA Lecture 35", category: "DSA", duration: 1 },
-  { date: "2026-04-27", title: "DSA Coding", category: "DSA Coding", duration: 0.75 },
-  { date: "2026-04-27", title: "ML", category: "ML", duration: 0.5 },
+  { title: "DBMS Chapter 2", duration: 1, date: "2026-04-20", category: "DBMS", completed: false },
 
-  // APR 28
-  { date: "2026-04-28", title: "MUP Slides 12–16", category: "MUP", duration: 3.75 },
-  { date: "2026-04-28", title: "PoM PPT 10–11", category: "PoM", duration: 3 },
-  { date: "2026-04-28", title: "Water Videos 46–55", category: "Water", duration: 1.5 },
-  { date: "2026-04-28", title: "DSA Lecture 36", category: "DSA", duration: 1 },
-  { date: "2026-04-28", title: "DSA Coding", category: "DSA Coding", duration: 0.75 },
-  { date: "2026-04-28", title: "ML", category: "ML", duration: 0.5 },
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-20", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-20", category: "ML", completed: false },
 
-  // APR 29
-  { date: "2026-04-29", title: "PoM PPT 12–13", category: "PoM", duration: 3 },
-  { date: "2026-04-29", title: "DBMS Chapters 10–12", category: "DBMS", duration: 3 },
-  { date: "2026-04-29", title: "MUP Slides 17–20", category: "MUP", duration: 2.75 },
-  { date: "2026-04-29", title: "DSA Coding", category: "DSA Coding", duration: 0.75 },
-  { date: "2026-04-29", title: "ML", category: "ML", duration: 0.5 },
+  // ===== APR 21 =====
+  ...[24,25,26,27,28].map(i => ({
+    title: `DSA Lecture ${i}`, duration: 1, date: "2026-04-21", category: "DSA", completed: false
+  })),
 
-  // APR 30
-  { date: "2026-04-30", title: "PoM Old PPT 1–5", category: "PoM", duration: 5 },
-  { date: "2026-04-30", title: "Water Videos 56–70", category: "Water", duration: 2.5 },
-  { date: "2026-04-30", title: "MUP Slides 21–22", category: "MUP", duration: 1.25 },
-  { date: "2026-04-30", title: "DSA Coding", category: "DSA Coding", duration: 0.75 },
-  { date: "2026-04-30", title: "ML", category: "ML", duration: 0.5 },
+  { title: "MUP Slide 3", duration: 1, date: "2026-04-21", category: "MUP", completed: false },
+  { title: "MUP Slide 4", duration: 1, date: "2026-04-21", category: "MUP", completed: false },
 
-  // MAY 1
-  { date: "2026-05-01", title: "MUP Slides 23–25", category: "MUP", duration: 2.25 },
-  { date: "2026-05-01", title: "MUP Old Slides", category: "MUP", duration: 3 },
-  { date: "2026-05-01", title: "PoM Old PPT 6–8", category: "PoM", duration: 3 },
-  { date: "2026-05-01", title: "DBMS Chapter 13", category: "DBMS", duration: 1.5 },
-  { date: "2026-05-01", title: "DSA Coding", category: "DSA Coding", duration: 0.75 },
-  { date: "2026-05-01", title: "ML", category: "ML", duration: 0.5 },
+  { title: "PoM PPT 4", duration: 1.5, date: "2026-04-21", category: "PoM", completed: false },
 
-  // MAY 2
-  { date: "2026-05-02", title: "DBMS Chapter 14", category: "DBMS", duration: 0.5 },
-  { date: "2026-05-02", title: "MUP Finish", category: "MUP", duration: 3.5 },
-  { date: "2026-05-02", title: "Water Videos 71–80", category: "Water", duration: 4.75 },
-  { date: "2026-05-02", title: "DSA Coding", category: "DSA Coding", duration: 0.75 },
-  { date: "2026-05-02", title: "ML", category: "ML", duration: 0.5 }
+  ...[1,2,3,4,5].map(i => ({
+    title: `Water San ${i}`, duration: 0.2, date: "2026-04-21", category: "Water Sanitation", completed: false
+  })),
+
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-21", category: "DSA Coding", completed: false },
+
+  // ===== APR 22 =====
+  { title: "PoM Assignment Prep", duration: 2, date: "2026-04-22", category: "PoM", completed: false },
+
+  ...[29,30,31].map(i => ({
+    title: `DSA Lecture ${i}`, duration: 1, date: "2026-04-22", category: "DSA", completed: false
+  })),
+
+  { title: "DBMS Chapter 3", duration: 1, date: "2026-04-22", category: "DBMS", completed: false },
+  { title: "DBMS Chapter 4", duration: 1, date: "2026-04-22", category: "DBMS", completed: false },
+
+  { title: "MUP Slide 5", duration: 0.75, date: "2026-04-22", category: "MUP", completed: false },
+  { title: "MUP Slide 6", duration: 0.75, date: "2026-04-22", category: "MUP", completed: false },
+
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-22", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-22", category: "ML", completed: false },
+
+  // ===== APR 23 =====
+  { title: "DSA Lecture 32", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
+  { title: "DSA Lecture 33", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
+  { title: "DSA Extra", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
+  { title: "PoM Assignment Prep", duration: 2, date: "2026-04-23", category: "PoM", completed: false },
+
+  // ===== APR 24 =====
+  { title: "DBMS Chapter 5", duration: 1, date: "2026-04-24", category: "DBMS", completed: false },
+  { title: "DBMS Chapter 6", duration: 1, date: "2026-04-24", category: "DBMS", completed: false },
+  { title: "PoM PPT 5", duration: 1.5, date: "2026-04-24", category: "PoM", completed: false },
+  { title: "DSA Coding", duration: 1, date: "2026-04-24", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-24", category: "ML", completed: false },
+
+  // ===== APR 25 =====
+  { title: "DSA Lecture 34", duration: 1, date: "2026-04-25", category: "DSA", completed: false },
+  { title: "DSA Lecture 35", duration: 1, date: "2026-04-25", category: "DSA", completed: false },
+
+  { title: "PoM PPT 6", duration: 1.5, date: "2026-04-25", category: "PoM", completed: false },
+  { title: "PoM PPT 7", duration: 1.5, date: "2026-04-25", category: "PoM", completed: false },
+
+  ...[7,8,9,10].map(i => ({
+    title: `MUP Slide ${i}`, duration: 0.75, date: "2026-04-25", category: "MUP", completed: false
+  })),
+
+  { title: "DBMS Chapter 7", duration: 0.75, date: "2026-04-25", category: "DBMS", completed: false },
+  { title: "DBMS Chapter 8", duration: 0.75, date: "2026-04-25", category: "DBMS", completed: false },
+
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-25", category: "DSA Coding", completed: false },
+
+  // ===== APR 26 =====
+  { title: "DSA Lecture 36", duration: 1, date: "2026-04-26", category: "DSA", completed: false },
+
+  { title: "PoM PPT 8", duration: 1.5, date: "2026-04-26", category: "PoM", completed: false },
+  { title: "PoM PPT 9", duration: 1.5, date: "2026-04-26", category: "PoM", completed: false },
+
+  ...Array.from({ length: 15 }, (_, i) => ({
+    title: `Water San ${i + 6}`, duration: 0.166, date: "2026-04-26", category: "Water Sanitation", completed: false
+  })),
+
+  { title: "DBMS Chapter 9", duration: 1, date: "2026-04-26", category: "DBMS", completed: false },
+  { title: "DBMS Chapter 10", duration: 1, date: "2026-04-26", category: "DBMS", completed: false },
+
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-26", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-26", category: "ML", completed: false },
+
+  // ===== APR 27 =====
+  ...[11,12,13,14,15].map(i => ({
+    title: `MUP Slide ${i}`, duration: 0.7, date: "2026-04-27", category: "MUP", completed: false
+  })),
+
+  { title: "PoM PPT 10", duration: 1.5, date: "2026-04-27", category: "PoM", completed: false },
+  { title: "PoM PPT 11", duration: 1.5, date: "2026-04-27", category: "PoM", completed: false },
+
+  { title: "DBMS Chapter 11", duration: 1, date: "2026-04-27", category: "DBMS", completed: false },
+  { title: "DBMS Chapter 12", duration: 1, date: "2026-04-27", category: "DBMS", completed: false },
+
+  ...[21,22,23,24,25,26,27,28,29,30].map(i => ({
+    title: `Water San ${i}`, duration: 0.1, date: "2026-04-27", category: "Water Sanitation", completed: false
+  })),
+
+  { title: "ML", duration: 0.5, date: "2026-04-27", category: "ML", completed: false },
+
+  // ===== APR 28 =====
+  ...Array.from({ length: 20 }, (_, i) => ({
+    title: `Water San ${i + 31}`, duration: 0.15, date: "2026-04-28", category: "Water Sanitation", completed: false
+  })),
+
+  ...[16,17,18,19,20].map(i => ({
+    title: `MUP Slide ${i}`, duration: 0.6, date: "2026-04-28", category: "MUP", completed: false
+  })),
+
+  { title: "PoM PPT 12", duration: 1.5, date: "2026-04-28", category: "PoM", completed: false },
+  { title: "PoM PPT 13", duration: 1.5, date: "2026-04-28", category: "PoM", completed: false },
+
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-28", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-28", category: "ML", completed: false },
+
+  // ===== APR 29 =====
+  ...[1,2,3,4].map(i => ({
+    title: `PoM Old PPT ${i}`, duration: 1, date: "2026-04-29", category: "PoM", completed: false
+  })),
+
+  { title: "DBMS Chapter 13", duration: 2, date: "2026-04-29", category: "DBMS", completed: false },
+
+  ...[21,22,23].map(i => ({
+    title: `MUP Slide ${i}`, duration: 0.8, date: "2026-04-29", category: "MUP", completed: false
+  })),
+
+  ...[51,52,53,54,55].map(i => ({
+    title: `Water San ${i}`, duration: 0.2, date: "2026-04-29", category: "Water Sanitation", completed: false
+  })),
+
+  { title: "ML", duration: 0.5, date: "2026-04-29", category: "ML", completed: false },
+
+  // ===== APR 30 =====
+  ...[5,6,7,8].map(i => ({
+    title: `PoM Old PPT ${i}`, duration: 1, date: "2026-04-30", category: "PoM", completed: false
+  })),
+
+  ...[56,57,58,59,60,61,62,63,64,65,66,67,68,69,70].map(i => ({
+    title: `Water San ${i}`, duration: 0.2, date: "2026-04-30", category: "Water Sanitation", completed: false
+  })),
+
+  { title: "MUP Slide 24", duration: 1, date: "2026-04-30", category: "MUP", completed: false },
+  { title: "MUP Slide 25", duration: 1, date: "2026-04-30", category: "MUP", completed: false },
+
+  { title: "DSA Coding", duration: 0.5, date: "2026-04-30", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-04-30", category: "ML", completed: false },
+
+  // ===== MAY 1 =====
+  { title: "MUP Old Slides", duration: 3, date: "2026-05-01", category: "MUP", completed: false },
+  { title: "DBMS Chapter 14", duration: 1.5, date: "2026-05-01", category: "DBMS", completed: false },
+
+  ...[71,72,73,74,75].map(i => ({
+    title: `Water San ${i}`, duration: 0.4, date: "2026-05-01", category: "Water Sanitation", completed: false
+  })),
+
+  { title: "Revision", duration: 2.5, date: "2026-05-01", category: "Revision", completed: false },
+  { title: "ML", duration: 0.5, date: "2026-05-01", category: "ML", completed: false },
+
+  // ===== MAY 2 =====
+  ...[76,77,78,79,80].map(i => ({
+    title: `Water San ${i}`, duration: 0.4, date: "2026-05-02", category: "Water Sanitation", completed: false
+  })),
+
+  { title: "Final Revision", duration: 5, date: "2026-05-02", category: "Revision", completed: false },
+  { title: "DSA Coding", duration: 1, date: "2026-05-02", category: "DSA Coding", completed: false },
+  { title: "ML", duration: 1, date: "2026-05-02", category: "ML", completed: false }
+
 ];
+
+export default tasks;
