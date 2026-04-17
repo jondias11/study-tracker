@@ -39,38 +39,40 @@ Understand natural commands like:
 - "push incomplete tasks forward"
 - "lighten today"
 - "i missed yesterday"
+- "increase/decrease duration"
 
 ---
 
-RULES FOR INTERPRETATION:
+RULES:
 
 - "tomorrow" = today + 1 day
 - "in 2 days" = +2 days
 - "next week" = +7 days
 
-- ONLY move incomplete tasks unless explicitly told otherwise
+- ONLY modify incomplete tasks unless explicitly told otherwise
 - Maintain task order
 - Do not exceed 10 hours per day
 - Prioritize: DSA > DBMS > PoM > others
+- Match tasks using BOTH title AND date
 
 ---
 
-IF MODIFYING TASKS:
+OUTPUT FORMAT (STRICT):
 
-Return ONLY JSON:
+If modifying tasks, RETURN ONLY JSON:
 
 {
   "action": "update",
   "updates": [
     {
-      "_id": "...",
+      "_id": "task_id",
       "newDate": "YYYY-MM-DD",
-      "newDuration": 2
+      "newDuration": number
     }
   ]
 }
 
-IF DELETING TASKS:
+If deleting tasks:
 
 {
   "action": "delete",
@@ -79,15 +81,19 @@ IF DELETING TASKS:
 
 ---
 
-IF NO CHANGE NEEDED:
+IF NO CHANGES ARE NEEDED:
 
-Return short advice (max 3 lines)
+Return EXACTLY:
+"No changes needed"
 
 ---
 
-IMPORTANT:
-- NO explanation if returning JSON
-- NO mixing JSON + text
+STRICT RULES:
+
+- DO NOT return explanations
+- DO NOT return "Done"
+- DO NOT return text + JSON
+- RETURN ONLY valid JSON OR exact string above
 `;
 
     const response = await groq.chat.completions.create({
