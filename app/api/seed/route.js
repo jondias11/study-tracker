@@ -1,6 +1,6 @@
 import { connectDB } from "@/lib/db";
 import Task from "@/models/Task";
-import { tasks } from "@/data/tasks";
+import tasks from "@/data/tasks";
 
 export async function GET() {
   await connectDB();
