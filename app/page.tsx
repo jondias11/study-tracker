@@ -151,37 +151,45 @@ export default function Page() {
 
       let aiText = data.message || "Done";
 
-      // UPDATE (DATE + DURATION)
-      if (data.action === "update" && data.updates) {
-        const updatedIds = data.updates.map((u: any) => u._id);
+let parsed;
 
-        setTasks(prev =>
-          prev.map(t => {
-            const update = data.updates.find((u: any) => u._id === t._id);
-            if (!update) return t;
+try {
+  parsed = JSON.parse(data.message);
+} catch {
+  parsed = null;
+}
 
-            return {
-              ...t,
-              date: update.newDate ?? t.date,
-              duration: update.newDuration ?? t.duration
-            };
-          })
-        );
+// 🔥 HANDLE UPDATE
+if (parsed?.action === "update" && parsed.updates) {
+  const updatedIds = parsed.updates.map((u: any) => u._id);
 
-        setHighlightedTasks(updatedIds);
-        setTimeout(() => setHighlightedTasks([]), 2000);
+  setTasks(prev =>
+    prev.map(t => {
+      const update = parsed.updates.find((u: any) => u._id === t._id);
+      if (!update) return t;
 
-        aiText = `✅ Updated ${updatedIds.length} task(s)`;
-      }
+      return {
+        ...t,
+        date: update.newDate ?? t.date,
+        duration: update.newDuration ?? t.duration,
+      };
+    })
+  );
 
-      // DELETE
-      else if (data.action === "delete" && data.ids) {
-        setTasks(prev =>
-          prev.filter(t => !data.ids.includes(t._id))
-        );
+  setHighlightedTasks(updatedIds);
+  setTimeout(() => setHighlightedTasks([]), 2000);
 
-        aiText = `🗑️ Removed ${data.ids.length} task(s)`;
-      }
+  aiText = `✅ Updated ${updatedIds.length} task(s)`;
+}
+
+// 🔥 HANDLE DELETE
+else if (parsed?.action === "delete" && parsed.ids) {
+  setTasks(prev =>
+    prev.filter(t => !parsed.ids.includes(t._id))
+  );
+
+  aiText = `🗑️ Removed ${parsed.ids.length} task(s)`;
+}
 
       setChatHistory(prev => [...prev, { role: "ai", content: aiText }]);
 
