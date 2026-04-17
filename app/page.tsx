@@ -124,9 +124,9 @@ const total = dayTasks.reduce(
         body: JSON.stringify({ tasks })
       });
 
-      const data = await res.json();
+      const  = await res.json();
 
-      setAiResponse(data.error ? "AI error: " + data.error : data.message);
+      setAiResponse(.error ? "AI error: " + .error : .message);
     } catch {
       setAiResponse("Failed to connect to AI");
     }
@@ -159,23 +159,30 @@ const sendMessage = async () => {
 
     // 🔥 HANDLE UPDATE
     if (data.action === "update" && data.updates) {
-      const updatedIds = data.updates.map((u: any) => u._id);
+  const updatedIds = data.updates.map((u: any) => u._id);
 
-      setTasks(prev =>
-        prev.map(t => {
-          const update = data.updates.find((u: any) => u._id === t._id);
-          return update ? { ...t, date: update.newDate } : t;
-        })
-      );
+  setTasks(prev =>
+    prev.map(t => {
+      const update = data.updates.find((u: any) => u._id === t._id);
 
-      setHighlightedTasks(updatedIds);
+      if (!update) return t;
 
-      setTimeout(() => {
-        setHighlightedTasks([]);
-      }, 2000);
+      return {
+        ...t,
+        date: update.newDate ?? t.date,
+        duration: update.newDuration ?? t.duration, // 🔥 THIS FIX
+      };
+    })
+  );
 
-      aiText = `✅ Moved ${updatedIds.length} task(s)`;
-    }
+  setHighlightedTasks(updatedIds);
+
+  setTimeout(() => {
+    setHighlightedTasks([]);
+  }, 2000);
+
+  aiText = `✅ Updated ${updatedIds.length} task(s)`;
+}
 
     // 🔥 HANDLE DELETE
     else if (data.action === "delete" && data.ids) {
