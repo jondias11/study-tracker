@@ -11,7 +11,7 @@ const tasks = [
   { title: "MUP Slide 1", duration: 0.5, date: "2026-04-18", category: "MUP", completed: false },
   { title: "MUP Slide 2", duration: 0.5, date: "2026-04-18", category: "MUP", completed: false },
 
-  { title: "DSA Coding", duration: 0.5, date: "2026-04-18", category: "DSA Coding", completed: false },
+  { title: "DSA Coding", duration: 1, date: "2026-04-18", category: "DSA Coding", completed: false },
   { title: "ML", duration: 0.5, date: "2026-04-18", category: "ML", completed: false },
 
   // ===== APR 19 =====
@@ -22,7 +22,7 @@ const tasks = [
   { title: "DBMS Chapter 1", duration: 1.5, date: "2026-04-19", category: "DBMS", completed: false },
   { title: "PoM PPT 3", duration: 1.5, date: "2026-04-19", category: "PoM", completed: false },
 
-  { title: "DSA Coding", duration: 0.5, date: "2026-04-19", category: "DSA Coding", completed: false },
+  { title: "DSA Coding", duration: 1, date: "2026-04-19", category: "DSA Coding", completed: false },
   { title: "ML", duration: 0.5, date: "2026-04-19", category: "ML", completed: false },
 
   // ===== APR 20 =====
@@ -34,7 +34,7 @@ const tasks = [
 
   { title: "DBMS Chapter 2", duration: 1, date: "2026-04-20", category: "DBMS", completed: false },
 
-  { title: "DSA Coding", duration: 0.5, date: "2026-04-20", category: "DSA Coding", completed: false },
+  { title: "DSA Coding", duration: 1, date: "2026-04-20", category: "DSA Coding", completed: false },
   { title: "ML", duration: 0.5, date: "2026-04-20", category: "ML", completed: false },
 
   // ===== APR 21 =====
@@ -51,7 +51,7 @@ const tasks = [
     title: `Water San ${i}`, duration: 0.2, date: "2026-04-21", category: "Water Sanitation", completed: false
   })),
 
-  { title: "DSA Coding", duration: 0.5, date: "2026-04-21", category: "DSA Coding", completed: false },
+  { title: "DSA Coding", duration: 1, date: "2026-04-21", category: "DSA Coding", completed: false },
 
   // ===== APR 22 =====
   { title: "PoM Assignment Prep", duration: 2, date: "2026-04-22", category: "PoM", completed: false },
@@ -66,7 +66,7 @@ const tasks = [
   { title: "MUP Slide 5", duration: 0.75, date: "2026-04-22", category: "MUP", completed: false },
   { title: "MUP Slide 6", duration: 0.75, date: "2026-04-22", category: "MUP", completed: false },
 
-  { title: "DSA Coding", duration: 0.5, date: "2026-04-22", category: "DSA Coding", completed: false },
+  { title: "DSA Coding", duration: 1, date: "2026-04-22", category: "DSA Coding", completed: false },
   { title: "ML", duration: 0.5, date: "2026-04-22", category: "ML", completed: false },
 
   // ===== APR 23 =====
