@@ -96,21 +96,33 @@ IMPORTANT:
     }
 
     // 🔥 If AI wants to update tasks
-    if (parsed.action === "update") {
-      const updates = parsed.updates;
+    if (parsed.action === "update" && parsed.updates) {
+  const updatedIds = parsed.updates.map((u: any) => u._id);
 
-      // Apply updates
-      const updatedTasks = tasks.map(task => {
-        const match = updates.find(
-          u => u.category === task.category
-        );
+  setTasks(prev =>
+    prev.map(t => {
+      const update = parsed.updates.find((u: any) => u._id === t._id);
+      return update ? { ...t, date: update.newDate } : t;
+    })
+  );
 
-        if (match) {
-          return { ...task, date: match.newDate };
-        }
+  setHighlightedTasks(updatedIds);
 
-        return task;
-      });
+  setTimeout(() => {
+    setHighlightedTasks([]);
+  }, 2000);
+
+  aiText = `✅ Updated ${updatedIds.length} task(s)`;
+}
+
+// 🔥 NEW: HANDLE DELETE
+else if (parsed.action === "delete" && parsed.ids) {
+  setTasks(prev =>
+    prev.filter(t => !parsed.ids.includes(t._id))
+  );
+
+  aiText = `🗑️ Removed ${parsed.ids.length} task(s)`;
+}
 
       return Response.json({
         message: "Tasks updated successfully ✅",
