@@ -178,10 +178,10 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-black text-white p-6">
-      <div className="max-w-2xl mx-auto flex flex-col items-center">
+      <div className="max-w-2xl mx-auto">
 
         {/* SUBJECT PROGRESS */}
-        <div className="flex gap-4 overflow-x-auto mb-6">
+        <div className="flex gap-6 justify-center mb-6 w-full">
           {subjectProgress.map(([name, sub]: any, i) => {
             const percent = Math.round((sub.done / sub.total) * 100);
 
