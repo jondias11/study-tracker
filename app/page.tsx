@@ -178,7 +178,7 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-black text-white p-6">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto flex flex-col items-center">
 
         {/* SUBJECT PROGRESS */}
         <div className="flex gap-4 overflow-x-auto mb-6">
