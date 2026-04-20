@@ -63,9 +63,9 @@ export default function Page() {
   const dayTasks = currentDate ? groupedTasks[currentDate] || [] : [];
 
   // ✅ DAILY PROGRESS
-  const totalHours = dayTasks.reduce((sum, task) => sum + task.duration, 0);
+  const totalHours = dayTasks.reduce((sum: number, task: Task) => sum + task.duration, 0);
   const completedHours = dayTasks.reduce(
-    (sum, task) => sum + (task.completed ? task.duration : 0),
+    (sum: number, task: Task) => sum + (task.completed ? task.duration : 0),
     0
   );
 
