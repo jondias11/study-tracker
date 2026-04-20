@@ -1,122 +1,242 @@
 const tasks = [
+  // 🔹 APRIL 20
+  {
+    date: "2026-04-20",
+    tasks: [
+      { name: "MUP Lab Prep", duration: 1.5, completed: false },
 
-  // ===== APR 20 =====
-  { title: "MUP Lab Prep", duration: 3, date: "2026-04-20", category: "MUP", completed: false },
+      { name: "DSA Lec 11", duration: 0.75, completed: false },
+      { name: "DSA Lec 12", duration: 0.75, completed: false },
+      { name: "DSA Lec 13", duration: 0.75, completed: false },
 
-  { title: "DSA Lecture 11", duration: 1, date: "2026-04-20", category: "DSA", completed: false },
-  { title: "DSA Lecture 12", duration: 1, date: "2026-04-20", category: "DSA", completed: false },
-  { title: "DSA Lecture 13", duration: 1, date: "2026-04-20", category: "DSA", completed: false },
-  { title: "DSA Lecture 14", duration: 1, date: "2026-04-20", category: "DSA", completed: false },
-  { title: "DSA Lecture 15", duration: 1, date: "2026-04-20", category: "DSA", completed: false },
-  { title: "DSA Lecture 16", duration: 1, date: "2026-04-20", category: "DSA", completed: false },
+      { name: "POM Lec 1", duration: 1, completed: false },
 
-  { title: "DSA Coding", duration: 1, date: "2026-04-20", category: "DSA", completed: false },
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
+      { name: "Water Sanitation (2 videos)", duration: 0.35, completed: false }
+    ]
+  },
 
-  // ===== APR 21 =====
-  { title: "DSA Lecture 17", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
-  { title: "DSA Lecture 18", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
-  { title: "DSA Lecture 19", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
-  { title: "DSA Lecture 20", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
-  { title: "DSA Lecture 21", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
-  { title: "DSA Lecture 22", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
-  { title: "DSA Lecture 23", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
+  // 🔹 APRIL 21
+  {
+    date: "2026-04-21",
+    tasks: [
+      { name: "MUP Lab Prep", duration: 1, completed: false },
 
-  { title: "DSA Coding", duration: 1, date: "2026-04-21", category: "DSA", completed: false },
-  { title: "PoM PPT 1", duration: 1, date: "2026-04-21", category: "PoM", completed: false },
+      { name: "DSA Lec 14", duration: 0.75, completed: false },
+      { name: "DSA Lec 15", duration: 0.75, completed: false },
+      { name: "DSA Lec 16", duration: 0.75, completed: false },
+      { name: "DSA Lec 17", duration: 0.75, completed: false },
+      { name: "DSA Lec 18", duration: 0.75, completed: false },
+      { name: "DSA Lec 19", duration: 0.75, completed: false },
+      { name: "DSA Lec 20", duration: 0.75, completed: false },
 
-  // ===== APR 22 =====
-  { title: "PoM Assignment Prep", duration: 2, date: "2026-04-22", category: "PoM", completed: false },
+      { name: "POM Lec 2", duration: 1, completed: false },
 
-  { title: "DSA Lecture 24", duration: 1, date: "2026-04-22", category: "DSA", completed: false },
-  { title: "DSA Lecture 25", duration: 1, date: "2026-04-22", category: "DSA", completed: false },
-  { title: "DSA Lecture 26", duration: 1, date: "2026-04-22", category: "DSA", completed: false },
-  { title: "DSA Lecture 27", duration: 1, date: "2026-04-22", category: "DSA", completed: false },
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
+    ]
+  },
 
-  { title: "DBMS Chapter 1", duration: 1.5, date: "2026-04-22", category: "DBMS", completed: false },
-  { title: "DBMS Chapter 2", duration: 1.5, date: "2026-04-22", category: "DBMS", completed: false },
+  // 🔹 APRIL 22
+  {
+    date: "2026-04-22",
+    tasks: [
+      { name: "DSA Lec 21", duration: 0.75, completed: false },
+      { name: "DSA Lec 22", duration: 0.75, completed: false },
+      { name: "DSA Lec 23", duration: 0.75, completed: false },
+      { name: "DSA Lec 24", duration: 0.75, completed: false },
+      { name: "DSA Lec 25", duration: 0.75, completed: false },
+      { name: "DSA Lec 26", duration: 0.75, completed: false },
+      { name: "DSA Lec 27", duration: 0.75, completed: false },
 
-  { title: "DSA Coding", duration: 1, date: "2026-04-22", category: "DSA", completed: false },
+      { name: "MUP Lec 1", duration: 0.75, completed: false },
+      { name: "MUP Lec 2", duration: 0.75, completed: false },
 
-  // ===== APR 23 =====
-  { title: "DSA Lecture 28", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
-  { title: "DSA Lecture 29", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
-  { title: "DSA Lecture 30", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
-  { title: "DSA Lecture 31", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
-  { title: "DSA Lecture 32", duration: 1, date: "2026-04-23", category: "DSA", completed: false },
+      { name: "POM Lec 3", duration: 1, completed: false },
 
-  // ===== APR 24 =====
-  { title: "DSA Lecture 33", duration: 1, date: "2026-04-24", category: "DSA", completed: false },
-  { title: "DBMS Chapter 3", duration: 1.5, date: "2026-04-24", category: "DBMS", completed: false },
-  { title: "PoM PPT 2", duration: 1, date: "2026-04-24", category: "PoM", completed: false },
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
+    ]
+  },
 
-  { title: "Water San Video 1", duration: 0.2, date: "2026-04-24", category: "Water", completed: false },
-  { title: "Water San Video 2", duration: 0.2, date: "2026-04-24", category: "Water", completed: false },
-  { title: "Water San Video 3", duration: 0.2, date: "2026-04-24", category: "Water", completed: false },
-  { title: "Water San Video 4", duration: 0.2, date: "2026-04-24", category: "Water", completed: false },
-  { title: "Water San Video 5", duration: 0.2, date: "2026-04-24", category: "Water", completed: false },
-  { title: "Water San Video 6", duration: 0.2, date: "2026-04-24", category: "Water", completed: false },
+  // 🔹 APRIL 23
+  {
+    date: "2026-04-23",
+    tasks: [
+      { name: "DSA Lec 28", duration: 0.75, completed: false },
+      { name: "DSA Lec 29", duration: 0.75, completed: false },
+      { name: "DSA Lec 30", duration: 0.75, completed: false },
+      { name: "DSA Lec 31", duration: 0.75, completed: false },
+      { name: "DSA Lec 32", duration: 0.75, completed: false },
+      { name: "DSA Lec 33", duration: 0.75, completed: false },
 
-  // ===== CONTINUING CLEANLY =====
+      { name: "POM Assignment Prep", duration: 2, completed: false },
 
-  // DBMS 4–14
-  ...Array.from({ length: 11 }, (_, i) => ({
-    title: `DBMS Chapter ${i + 4}`,
-    duration: 1.5,
-    date: `2026-04-${25 + Math.floor(i / 2)}`,
-    category: "DBMS",
-    completed: false
-  })),
+      { name: "Water Sanitation (5 videos)", duration: 0.85, completed: false }
+    ]
+  },
 
-  // PoM PPT 3–13
-  ...Array.from({ length: 11 }, (_, i) => ({
-    title: `PoM PPT ${i + 3}`,
-    duration: 1,
-    date: `2026-04-${25 + Math.floor(i / 2)}`,
-    category: "PoM",
-    completed: false
-  })),
+  // 🔹 APRIL 24
+  {
+    date: "2026-04-24",
+    tasks: [
+      { name: "POM Lec 4", duration: 1, completed: false },
+      { name: "POM Lec 5", duration: 1, completed: false },
+      { name: "POM Lec 6", duration: 1, completed: false },
 
-  // PoM Old PPT 1–8
-  ...Array.from({ length: 8 }, (_, i) => ({
-    title: `PoM Old PPT ${i + 1}`,
-    duration: 1,
-    date: `2026-05-0${1 + Math.floor(i / 3)}`,
-    category: "PoM",
-    completed: false
-  })),
+      { name: "DBMS Lec 1", duration: 1.25, completed: false },
 
-  // Water San 7–80
-  ...Array.from({ length: 74 }, (_, i) => ({
-    title: `Water San Video ${i + 7}`,
-    duration: 0.2,
-    date: `2026-04-${25 + Math.floor(i / 10)}`,
-    category: "Water",
-    completed: false
-  })),
+      { name: "MUP Lec 3", duration: 0.75, completed: false },
+      { name: "MUP Lec 4", duration: 0.75, completed: false },
+      { name: "MUP Lec 5", duration: 0.75, completed: false },
 
-  // MUP Slides 1–25
-  ...Array.from({ length: 25 }, (_, i) => ({
-    title: `MUP Slide ${i + 1}`,
-    duration: 0.5,
-    date: `2026-04-${25 + Math.floor(i / 4)}`,
-    category: "MUP",
-    completed: false
-  })),
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
+    ]
+  },
 
-  // MUP Old Slides
-  { title: "MUP Old Slides", duration: 3, date: "2026-05-01", category: "MUP", completed: false },
+  // 🔹 APRIL 25
+  {
+    date: "2026-04-25",
+    tasks: [
+      { name: "POM Lec 7", duration: 1, completed: false },
+      { name: "POM Lec 8", duration: 1, completed: false },
+      { name: "POM Lec 9", duration: 1, completed: false },
 
-  // ===== MAY 2 =====
-  { title: "MUP Completion", duration: 4, date: "2026-05-02", category: "MUP", completed: false },
-  { title: "DSA Practice", duration: 2, date: "2026-05-02", category: "DSA", completed: false },
+      { name: "DBMS Lec 2", duration: 1.25, completed: false },
+      { name: "DBMS Lec 3", duration: 1.25, completed: false },
 
-  // ===== MAY 3 =====
-  { title: "DSA Lecture 34", duration: 1, date: "2026-05-03", category: "DSA", completed: false },
-  { title: "DSA Lecture 35", duration: 1, date: "2026-05-03", category: "DSA", completed: false },
-  { title: "DSA Lecture 36", duration: 1, date: "2026-05-03", category: "DSA", completed: false },
-  { title: "DSA Lecture 37", duration: 1, date: "2026-05-03", category: "DSA", completed: false },
-  { title: "DSA Revision", duration: 2, date: "2026-05-03", category: "DSA", completed: false }
+      { name: "MUP Lec 6", duration: 0.75, completed: false },
+      { name: "MUP Lec 7", duration: 0.75, completed: false },
+      { name: "MUP Lec 8", duration: 0.75, completed: false },
 
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
+    ]
+  },
+
+  // 🔹 APRIL 26
+  {
+    date: "2026-04-26",
+    tasks: [
+      { name: "POM Lec 10", duration: 1, completed: false },
+      { name: "POM Lec 11", duration: 1, completed: false },
+      { name: "POM Lec 12", duration: 1, completed: false },
+
+      { name: "DBMS Lec 4", duration: 1.25, completed: false },
+      { name: "DBMS Lec 5", duration: 1.25, completed: false },
+
+      { name: "MUP Lec 9", duration: 0.75, completed: false },
+      { name: "MUP Lec 10", duration: 0.75, completed: false },
+      { name: "MUP Lec 11", duration: 0.75, completed: false },
+
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
+    ]
+  },
+
+  // 🔹 APRIL 27
+  {
+    date: "2026-04-27",
+    tasks: [
+      { name: "POM Lec 13", duration: 1, completed: false },
+      { name: "POM Lec 14", duration: 1, completed: false },
+      { name: "POM Lec 15", duration: 1, completed: false },
+
+      { name: "DBMS Lec 6", duration: 1.25, completed: false },
+      { name: "DBMS Lec 7", duration: 1.25, completed: false },
+
+      { name: "MUP Lec 12", duration: 0.75, completed: false },
+      { name: "MUP Lec 13", duration: 0.75, completed: false },
+      { name: "MUP Lec 14", duration: 0.75, completed: false },
+
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
+    ]
+  },
+
+  // 🔹 APRIL 28
+  {
+    date: "2026-04-28",
+    tasks: [
+      { name: "POM Lec 16", duration: 1, completed: false },
+      { name: "POM Lec 17", duration: 1, completed: false },
+      { name: "POM Lec 18", duration: 1, completed: false },
+
+      { name: "DBMS Lec 8", duration: 1.25, completed: false },
+      { name: "DBMS Lec 9", duration: 1.25, completed: false },
+
+      { name: "MUP Lec 15", duration: 0.75, completed: false },
+      { name: "MUP Lec 16", duration: 0.75, completed: false },
+      { name: "MUP Lec 17", duration: 0.75, completed: false },
+
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
+      { name: "Water Sanitation (1 video)", duration: 0.15, completed: false }
+    ]
+  },
+
+  // 🔹 APRIL 29
+  {
+    date: "2026-04-29",
+    tasks: [
+      { name: "POM Lec 19", duration: 1, completed: false },
+      { name: "POM Lec 20", duration: 1, completed: false },
+      { name: "POM Lec 21", duration: 1, completed: false },
+
+      { name: "DBMS Lec 10", duration: 1.25, completed: false },
+      { name: "DBMS Lec 11", duration: 1.25, completed: false },
+
+      { name: "MUP Lec 18", duration: 0.75, completed: false },
+      { name: "MUP Lec 19", duration: 0.75, completed: false },
+      { name: "MUP Lec 20", duration: 0.75, completed: false },
+
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
+    ]
+  },
+
+  // 🔹 APRIL 30
+  {
+    date: "2026-04-30",
+    tasks: [
+      { name: "POM Lec 22", duration: 1, completed: false },
+      { name: "POM Lec 23", duration: 1, completed: false },
+
+      { name: "DBMS Lec 12", duration: 1.25, completed: false },
+
+      { name: "MUP Lec 21", duration: 0.75, completed: false },
+      { name: "MUP Lec 22", duration: 0.75, completed: false },
+      { name: "MUP Lec 23", duration: 0.75, completed: false },
+
+      { name: "MUP Old Lectures", duration: 3, completed: false },
+
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
+      { name: "Water Sanitation (1 video)", duration: 0.15, completed: false }
+    ]
+  },
+
+  // 🔹 MAY 1
+  {
+    date: "2026-05-01",
+    tasks: [
+      { name: "POM Lec 24", duration: 1, completed: false },
+      { name: "POM Lec 25", duration: 1, completed: false },
+
+      { name: "DBMS Lec 13", duration: 1.25, completed: false },
+      { name: "DBMS Lec 14", duration: 1.25, completed: false },
+
+      { name: "MUP Lec 24", duration: 0.75, completed: false },
+      { name: "MUP Lec 25", duration: 0.75, completed: false },
+      { name: "MUP Lec 26", duration: 0.75, completed: false },
+
+      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
+      { name: "Water Sanitation (1 video)", duration: 0.15, completed: false }
+    ]
+  },
+
+  // 🔹 MAY 2
+  {
+    date: "2026-05-02",
+    tasks: [
+      { name: "MUP Lec 27", duration: 0.75, completed: false },
+      { name: "MUP Lec 28", duration: 0.75, completed: false },
+
+      { name: "Water Sanitation (4 videos)", duration: 0.7, completed: false }
+    ]
+  }
 ];
 
 export default tasks;
