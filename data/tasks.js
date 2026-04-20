@@ -6,7 +6,7 @@ const tasks = [
   { _id: "5", title: "POM Lec 1", duration: 1, completed: false, date: "2026-04-20", category: "POM" },
   { _id: "6", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-20", category: "WSS" },
   { _id: "7", title: "Water Sanitation (2 videos)", duration: 0.35, completed: false, date: "2026-04-20", category: "WSS" },
-
+ 
   { _id: "8", title: "MUP Lab Prep", duration: 1, completed: false, date: "2026-04-21", category: "MUP" },
   { _id: "9", title: "DSA Lec 14", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
   { _id: "10", title: "DSA Lec 15", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
