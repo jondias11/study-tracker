@@ -1,242 +1,127 @@
 const tasks = [
-  // 🔹 APRIL 20
-  {
-    date: "2026-04-20",
-    tasks: [
-      { name: "MUP Lab Prep", duration: 1.5, completed: false },
+  { _id: "1", title: "MUP Lab Prep", duration: 1.5, completed: false, date: "2026-04-20", category: "MUP" },
+  { _id: "2", title: "DSA Lec 11", duration: 0.75, completed: false, date: "2026-04-20", category: "DSA" },
+  { _id: "3", title: "DSA Lec 12", duration: 0.75, completed: false, date: "2026-04-20", category: "DSA" },
+  { _id: "4", title: "DSA Lec 13", duration: 0.75, completed: false, date: "2026-04-20", category: "DSA" },
+  { _id: "5", title: "POM Lec 1", duration: 1, completed: false, date: "2026-04-20", category: "POM" },
+  { _id: "6", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-20", category: "WSS" },
+  { _id: "7", title: "Water Sanitation (2 videos)", duration: 0.35, completed: false, date: "2026-04-20", category: "WSS" },
 
-      { name: "DSA Lec 11", duration: 0.75, completed: false },
-      { name: "DSA Lec 12", duration: 0.75, completed: false },
-      { name: "DSA Lec 13", duration: 0.75, completed: false },
+  { _id: "8", title: "MUP Lab Prep", duration: 1, completed: false, date: "2026-04-21", category: "MUP" },
+  { _id: "9", title: "DSA Lec 14", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
+  { _id: "10", title: "DSA Lec 15", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
+  { _id: "11", title: "DSA Lec 16", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
+  { _id: "12", title: "DSA Lec 17", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
+  { _id: "13", title: "DSA Lec 18", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
+  { _id: "14", title: "DSA Lec 19", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
+  { _id: "15", title: "DSA Lec 20", duration: 0.75, completed: false, date: "2026-04-21", category: "DSA" },
+  { _id: "16", title: "POM Lec 2", duration: 1, completed: false, date: "2026-04-21", category: "POM" },
+  { _id: "17", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-21", category: "WSS" },
 
-      { name: "POM Lec 1", duration: 1, completed: false },
+  { _id: "18", title: "DSA Lec 21", duration: 0.75, completed: false, date: "2026-04-22", category: "DSA" },
+  { _id: "19", title: "DSA Lec 22", duration: 0.75, completed: false, date: "2026-04-22", category: "DSA" },
+  { _id: "20", title: "DSA Lec 23", duration: 0.75, completed: false, date: "2026-04-22", category: "DSA" },
+  { _id: "21", title: "DSA Lec 24", duration: 0.75, completed: false, date: "2026-04-22", category: "DSA" },
+  { _id: "22", title: "DSA Lec 25", duration: 0.75, completed: false, date: "2026-04-22", category: "DSA" },
+  { _id: "23", title: "DSA Lec 26", duration: 0.75, completed: false, date: "2026-04-22", category: "DSA" },
+  { _id: "24", title: "DSA Lec 27", duration: 0.75, completed: false, date: "2026-04-22", category: "DSA" },
+  { _id: "25", title: "MUP Lec 1", duration: 0.75, completed: false, date: "2026-04-22", category: "MUP" },
+  { _id: "26", title: "MUP Lec 2", duration: 0.75, completed: false, date: "2026-04-22", category: "MUP" },
+  { _id: "27", title: "POM Lec 3", duration: 1, completed: false, date: "2026-04-22", category: "POM" },
+  { _id: "28", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-22", category: "WSS" },
 
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
-      { name: "Water Sanitation (2 videos)", duration: 0.35, completed: false }
-    ]
-  },
+  { _id: "29", title: "DSA Lec 28", duration: 0.75, completed: false, date: "2026-04-23", category: "DSA" },
+  { _id: "30", title: "DSA Lec 29", duration: 0.75, completed: false, date: "2026-04-23", category: "DSA" },
+  { _id: "31", title: "DSA Lec 30", duration: 0.75, completed: false, date: "2026-04-23", category: "DSA" },
+  { _id: "32", title: "DSA Lec 31", duration: 0.75, completed: false, date: "2026-04-23", category: "DSA" },
+  { _id: "33", title: "DSA Lec 32", duration: 0.75, completed: false, date: "2026-04-23", category: "DSA" },
+  { _id: "34", title: "DSA Lec 33", duration: 0.75, completed: false, date: "2026-04-23", category: "DSA" },
+  { _id: "35", title: "POM Assignment Prep", duration: 2, completed: false, date: "2026-04-23", category: "POM" },
+  { _id: "36", title: "Water Sanitation (5 videos)", duration: 0.85, completed: false, date: "2026-04-23", category: "WSS" },
 
-  // 🔹 APRIL 21
-  {
-    date: "2026-04-21",
-    tasks: [
-      { name: "MUP Lab Prep", duration: 1, completed: false },
+  { _id: "37", title: "POM Lec 4", duration: 1, completed: false, date: "2026-04-24", category: "POM" },
+  { _id: "38", title: "POM Lec 5", duration: 1, completed: false, date: "2026-04-24", category: "POM" },
+  { _id: "39", title: "POM Lec 6", duration: 1, completed: false, date: "2026-04-24", category: "POM" },
+  { _id: "40", title: "DBMS Lec 1", duration: 1.25, completed: false, date: "2026-04-24", category: "DBMS" },
+  { _id: "41", title: "MUP Lec 3", duration: 0.75, completed: false, date: "2026-04-24", category: "MUP" },
+  { _id: "42", title: "MUP Lec 4", duration: 0.75, completed: false, date: "2026-04-24", category: "MUP" },
+  { _id: "43", title: "MUP Lec 5", duration: 0.75, completed: false, date: "2026-04-24", category: "MUP" },
+  { _id: "44", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-24", category: "WSS" },
 
-      { name: "DSA Lec 14", duration: 0.75, completed: false },
-      { name: "DSA Lec 15", duration: 0.75, completed: false },
-      { name: "DSA Lec 16", duration: 0.75, completed: false },
-      { name: "DSA Lec 17", duration: 0.75, completed: false },
-      { name: "DSA Lec 18", duration: 0.75, completed: false },
-      { name: "DSA Lec 19", duration: 0.75, completed: false },
-      { name: "DSA Lec 20", duration: 0.75, completed: false },
+  { _id: "45", title: "POM Lec 7", duration: 1, completed: false, date: "2026-04-25", category: "POM" },
+  { _id: "46", title: "POM Lec 8", duration: 1, completed: false, date: "2026-04-25", category: "POM" },
+  { _id: "47", title: "POM Lec 9", duration: 1, completed: false, date: "2026-04-25", category: "POM" },
+  { _id: "48", title: "DBMS Lec 2", duration: 1.25, completed: false, date: "2026-04-25", category: "DBMS" },
+  { _id: "49", title: "DBMS Lec 3", duration: 1.25, completed: false, date: "2026-04-25", category: "DBMS" },
+  { _id: "50", title: "MUP Lec 6", duration: 0.75, completed: false, date: "2026-04-25", category: "MUP" },
+  { _id: "51", title: "MUP Lec 7", duration: 0.75, completed: false, date: "2026-04-25", category: "MUP" },
+  { _id: "52", title: "MUP Lec 8", duration: 0.75, completed: false, date: "2026-04-25", category: "MUP" },
+  { _id: "53", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-25", category: "WSS" },
 
-      { name: "POM Lec 2", duration: 1, completed: false },
+  { _id: "54", title: "POM Lec 10", duration: 1, completed: false, date: "2026-04-26", category: "POM" },
+  { _id: "55", title: "POM Lec 11", duration: 1, completed: false, date: "2026-04-26", category: "POM" },
+  { _id: "56", title: "POM Lec 12", duration: 1, completed: false, date: "2026-04-26", category: "POM" },
+  { _id: "57", title: "DBMS Lec 4", duration: 1.25, completed: false, date: "2026-04-26", category: "DBMS" },
+  { _id: "58", title: "DBMS Lec 5", duration: 1.25, completed: false, date: "2026-04-26", category: "DBMS" },
+  { _id: "59", title: "MUP Lec 9", duration: 0.75, completed: false, date: "2026-04-26", category: "MUP" },
+  { _id: "60", title: "MUP Lec 10", duration: 0.75, completed: false, date: "2026-04-26", category: "MUP" },
+  { _id: "61", title: "MUP Lec 11", duration: 0.75, completed: false, date: "2026-04-26", category: "MUP" },
+  { _id: "62", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-26", category: "WSS" },
 
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
-    ]
-  },
+  { _id: "63", title: "POM Lec 13", duration: 1, completed: false, date: "2026-04-27", category: "POM" },
+  { _id: "64", title: "POM Lec 14", duration: 1, completed: false, date: "2026-04-27", category: "POM" },
+  { _id: "65", title: "POM Lec 15", duration: 1, completed: false, date: "2026-04-27", category: "POM" },
+  { _id: "66", title: "DBMS Lec 6", duration: 1.25, completed: false, date: "2026-04-27", category: "DBMS" },
+  { _id: "67", title: "DBMS Lec 7", duration: 1.25, completed: false, date: "2026-04-27", category: "DBMS" },
+  { _id: "68", title: "MUP Lec 12", duration: 0.75, completed: false, date: "2026-04-27", category: "MUP" },
+  { _id: "69", title: "MUP Lec 13", duration: 0.75, completed: false, date: "2026-04-27", category: "MUP" },
+  { _id: "70", title: "MUP Lec 14", duration: 0.75, completed: false, date: "2026-04-27", category: "MUP" },
+  { _id: "71", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-27", category: "WSS" },
 
-  // 🔹 APRIL 22
-  {
-    date: "2026-04-22",
-    tasks: [
-      { name: "DSA Lec 21", duration: 0.75, completed: false },
-      { name: "DSA Lec 22", duration: 0.75, completed: false },
-      { name: "DSA Lec 23", duration: 0.75, completed: false },
-      { name: "DSA Lec 24", duration: 0.75, completed: false },
-      { name: "DSA Lec 25", duration: 0.75, completed: false },
-      { name: "DSA Lec 26", duration: 0.75, completed: false },
-      { name: "DSA Lec 27", duration: 0.75, completed: false },
+  { _id: "72", title: "POM Lec 16", duration: 1, completed: false, date: "2026-04-28", category: "POM" },
+  { _id: "73", title: "POM Lec 17", duration: 1, completed: false, date: "2026-04-28", category: "POM" },
+  { _id: "74", title: "POM Lec 18", duration: 1, completed: false, date: "2026-04-28", category: "POM" },
+  { _id: "75", title: "DBMS Lec 8", duration: 1.25, completed: false, date: "2026-04-28", category: "DBMS" },
+  { _id: "76", title: "DBMS Lec 9", duration: 1.25, completed: false, date: "2026-04-28", category: "DBMS" },
+  { _id: "77", title: "MUP Lec 15", duration: 0.75, completed: false, date: "2026-04-28", category: "MUP" },
+  { _id: "78", title: "MUP Lec 16", duration: 0.75, completed: false, date: "2026-04-28", category: "MUP" },
+  { _id: "79", title: "MUP Lec 17", duration: 0.75, completed: false, date: "2026-04-28", category: "MUP" },
+  { _id: "80", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-28", category: "WSS" },
+  { _id: "81", title: "Water Sanitation (1 video)", duration: 0.15, completed: false, date: "2026-04-28", category: "WSS" },
 
-      { name: "MUP Lec 1", duration: 0.75, completed: false },
-      { name: "MUP Lec 2", duration: 0.75, completed: false },
+  { _id: "82", title: "POM Lec 19", duration: 1, completed: false, date: "2026-04-29", category: "POM" },
+  { _id: "83", title: "POM Lec 20", duration: 1, completed: false, date: "2026-04-29", category: "POM" },
+  { _id: "84", title: "POM Lec 21", duration: 1, completed: false, date: "2026-04-29", category: "POM" },
+  { _id: "85", title: "DBMS Lec 10", duration: 1.25, completed: false, date: "2026-04-29", category: "DBMS" },
+  { _id: "86", title: "DBMS Lec 11", duration: 1.25, completed: false, date: "2026-04-29", category: "DBMS" },
+  { _id: "87", title: "MUP Lec 18", duration: 0.75, completed: false, date: "2026-04-29", category: "MUP" },
+  { _id: "88", title: "MUP Lec 19", duration: 0.75, completed: false, date: "2026-04-29", category: "MUP" },
+  { _id: "89", title: "MUP Lec 20", duration: 0.75, completed: false, date: "2026-04-29", category: "MUP" },
+  { _id: "90", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-29", category: "WSS" },
 
-      { name: "POM Lec 3", duration: 1, completed: false },
+  { _id: "91", title: "POM Lec 22", duration: 1, completed: false, date: "2026-04-30", category: "POM" },
+  { _id: "92", title: "POM Lec 23", duration: 1, completed: false, date: "2026-04-30", category: "POM" },
+  { _id: "93", title: "DBMS Lec 12", duration: 1.25, completed: false, date: "2026-04-30", category: "DBMS" },
+  { _id: "94", title: "MUP Lec 21", duration: 0.75, completed: false, date: "2026-04-30", category: "MUP" },
+  { _id: "95", title: "MUP Lec 22", duration: 0.75, completed: false, date: "2026-04-30", category: "MUP" },
+  { _id: "96", title: "MUP Lec 23", duration: 0.75, completed: false, date: "2026-04-30", category: "MUP" },
+  { _id: "97", title: "MUP Old Lectures", duration: 3, completed: false, date: "2026-04-30", category: "MUP" },
+  { _id: "98", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-04-30", category: "WSS" },
+  { _id: "99", title: "Water Sanitation (1 video)", duration: 0.15, completed: false, date: "2026-04-30", category: "WSS" },
 
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
-    ]
-  },
+  { _id: "100", title: "POM Lec 24", duration: 1, completed: false, date: "2026-05-01", category: "POM" },
+  { _id: "101", title: "POM Lec 25", duration: 1, completed: false, date: "2026-05-01", category: "POM" },
+  { _id: "102", title: "DBMS Lec 13", duration: 1.25, completed: false, date: "2026-05-01", category: "DBMS" },
+  { _id: "103", title: "DBMS Lec 14", duration: 1.25, completed: false, date: "2026-05-01", category: "DBMS" },
+  { _id: "104", title: "MUP Lec 24", duration: 0.75, completed: false, date: "2026-05-01", category: "MUP" },
+  { _id: "105", title: "MUP Lec 25", duration: 0.75, completed: false, date: "2026-05-01", category: "MUP" },
+  { _id: "106", title: "MUP Lec 26", duration: 0.75, completed: false, date: "2026-05-01", category: "MUP" },
+  { _id: "107", title: "Water Sanitation (6 videos)", duration: 1, completed: false, date: "2026-05-01", category: "WSS" },
+  { _id: "108", title: "Water Sanitation (1 video)", duration: 0.15, completed: false, date: "2026-05-01", category: "WSS" },
 
-  // 🔹 APRIL 23
-  {
-    date: "2026-04-23",
-    tasks: [
-      { name: "DSA Lec 28", duration: 0.75, completed: false },
-      { name: "DSA Lec 29", duration: 0.75, completed: false },
-      { name: "DSA Lec 30", duration: 0.75, completed: false },
-      { name: "DSA Lec 31", duration: 0.75, completed: false },
-      { name: "DSA Lec 32", duration: 0.75, completed: false },
-      { name: "DSA Lec 33", duration: 0.75, completed: false },
-
-      { name: "POM Assignment Prep", duration: 2, completed: false },
-
-      { name: "Water Sanitation (5 videos)", duration: 0.85, completed: false }
-    ]
-  },
-
-  // 🔹 APRIL 24
-  {
-    date: "2026-04-24",
-    tasks: [
-      { name: "POM Lec 4", duration: 1, completed: false },
-      { name: "POM Lec 5", duration: 1, completed: false },
-      { name: "POM Lec 6", duration: 1, completed: false },
-
-      { name: "DBMS Lec 1", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 3", duration: 0.75, completed: false },
-      { name: "MUP Lec 4", duration: 0.75, completed: false },
-      { name: "MUP Lec 5", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
-    ]
-  },
-
-  // 🔹 APRIL 25
-  {
-    date: "2026-04-25",
-    tasks: [
-      { name: "POM Lec 7", duration: 1, completed: false },
-      { name: "POM Lec 8", duration: 1, completed: false },
-      { name: "POM Lec 9", duration: 1, completed: false },
-
-      { name: "DBMS Lec 2", duration: 1.25, completed: false },
-      { name: "DBMS Lec 3", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 6", duration: 0.75, completed: false },
-      { name: "MUP Lec 7", duration: 0.75, completed: false },
-      { name: "MUP Lec 8", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
-    ]
-  },
-
-  // 🔹 APRIL 26
-  {
-    date: "2026-04-26",
-    tasks: [
-      { name: "POM Lec 10", duration: 1, completed: false },
-      { name: "POM Lec 11", duration: 1, completed: false },
-      { name: "POM Lec 12", duration: 1, completed: false },
-
-      { name: "DBMS Lec 4", duration: 1.25, completed: false },
-      { name: "DBMS Lec 5", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 9", duration: 0.75, completed: false },
-      { name: "MUP Lec 10", duration: 0.75, completed: false },
-      { name: "MUP Lec 11", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
-    ]
-  },
-
-  // 🔹 APRIL 27
-  {
-    date: "2026-04-27",
-    tasks: [
-      { name: "POM Lec 13", duration: 1, completed: false },
-      { name: "POM Lec 14", duration: 1, completed: false },
-      { name: "POM Lec 15", duration: 1, completed: false },
-
-      { name: "DBMS Lec 6", duration: 1.25, completed: false },
-      { name: "DBMS Lec 7", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 12", duration: 0.75, completed: false },
-      { name: "MUP Lec 13", duration: 0.75, completed: false },
-      { name: "MUP Lec 14", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
-    ]
-  },
-
-  // 🔹 APRIL 28
-  {
-    date: "2026-04-28",
-    tasks: [
-      { name: "POM Lec 16", duration: 1, completed: false },
-      { name: "POM Lec 17", duration: 1, completed: false },
-      { name: "POM Lec 18", duration: 1, completed: false },
-
-      { name: "DBMS Lec 8", duration: 1.25, completed: false },
-      { name: "DBMS Lec 9", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 15", duration: 0.75, completed: false },
-      { name: "MUP Lec 16", duration: 0.75, completed: false },
-      { name: "MUP Lec 17", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
-      { name: "Water Sanitation (1 video)", duration: 0.15, completed: false }
-    ]
-  },
-
-  // 🔹 APRIL 29
-  {
-    date: "2026-04-29",
-    tasks: [
-      { name: "POM Lec 19", duration: 1, completed: false },
-      { name: "POM Lec 20", duration: 1, completed: false },
-      { name: "POM Lec 21", duration: 1, completed: false },
-
-      { name: "DBMS Lec 10", duration: 1.25, completed: false },
-      { name: "DBMS Lec 11", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 18", duration: 0.75, completed: false },
-      { name: "MUP Lec 19", duration: 0.75, completed: false },
-      { name: "MUP Lec 20", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false }
-    ]
-  },
-
-  // 🔹 APRIL 30
-  {
-    date: "2026-04-30",
-    tasks: [
-      { name: "POM Lec 22", duration: 1, completed: false },
-      { name: "POM Lec 23", duration: 1, completed: false },
-
-      { name: "DBMS Lec 12", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 21", duration: 0.75, completed: false },
-      { name: "MUP Lec 22", duration: 0.75, completed: false },
-      { name: "MUP Lec 23", duration: 0.75, completed: false },
-
-      { name: "MUP Old Lectures", duration: 3, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
-      { name: "Water Sanitation (1 video)", duration: 0.15, completed: false }
-    ]
-  },
-
-  // 🔹 MAY 1
-  {
-    date: "2026-05-01",
-    tasks: [
-      { name: "POM Lec 24", duration: 1, completed: false },
-      { name: "POM Lec 25", duration: 1, completed: false },
-
-      { name: "DBMS Lec 13", duration: 1.25, completed: false },
-      { name: "DBMS Lec 14", duration: 1.25, completed: false },
-
-      { name: "MUP Lec 24", duration: 0.75, completed: false },
-      { name: "MUP Lec 25", duration: 0.75, completed: false },
-      { name: "MUP Lec 26", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (6 videos)", duration: 1, completed: false },
-      { name: "Water Sanitation (1 video)", duration: 0.15, completed: false }
-    ]
-  },
-
-  // 🔹 MAY 2
-  {
-    date: "2026-05-02",
-    tasks: [
-      { name: "MUP Lec 27", duration: 0.75, completed: false },
-      { name: "MUP Lec 28", duration: 0.75, completed: false },
-
-      { name: "Water Sanitation (4 videos)", duration: 0.7, completed: false }
-    ]
-  }
+  { _id: "109", title: "MUP Lec 27", duration: 0.75, completed: false, date: "2026-05-02", category: "MUP" },
+  { _id: "110", title: "MUP Lec 28", duration: 0.75, completed: false, date: "2026-05-02", category: "MUP" },
+  { _id: "111", title: "Water Sanitation (4 videos)", duration: 0.7, completed: false, date: "2026-05-02", category: "WSS" }
 ];
 
 export default tasks;
