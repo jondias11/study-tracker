@@ -1,9 +1,7 @@
 const tasks = [];
 
-let id = 1;
 const add = (title, duration, date, category) => {
   tasks.push({
-    _id: String(id++),
     title,
     duration,
     completed: false,
@@ -40,7 +38,7 @@ add("DBMS Lec 4", 1.25, "2026-04-25", "DBMS");
 for (let i = 4; i <= 6; i++) add(`MUP Lec ${i}`, 0.75, "2026-04-25", "MUP");
 add("Water Sanitation (6 videos)", 1, "2026-04-25", "WSS");
 
-// 🔹 APRIL 26 (≤ 6 hrs)
+// 🔹 APRIL 26
 add("POM Lec 9", 1, "2026-04-26", "POM");
 add("POM Lec 10", 1, "2026-04-26", "POM");
 add("DBMS Lec 5", 1.25, "2026-04-26", "DBMS");
