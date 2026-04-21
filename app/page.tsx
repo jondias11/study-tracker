@@ -207,7 +207,7 @@ return ( <main className="min-h-screen bg-black text-white p-6"> <div className=
     </div>
 
     {/* TASKS */}
-    <div className="space-y-3">
+        <div className="space-y-3">
       {sortedDayTasks.map(task => (
         <div
           key={task._id}
@@ -258,7 +258,5 @@ return ( <main className="min-h-screen bg-black text-white p-6"> <div className=
 
   </div>
 </main>
-```
-
-);
+  );
 }
