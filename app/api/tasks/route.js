@@ -11,9 +11,18 @@ export async function POST(req) {
   await connectDB();
   const body = await req.json();
 
+  const updateFields = {
+    completed: body.completed,
+  };
+
+  // ✅ only update date if provided
+  if (body.date) {
+    updateFields.date = body.date;
+  }
+
   const updated = await Task.findByIdAndUpdate(
     body._id,
-    { completed: body.completed },
+    updateFields,
     { new: true }
   );
 
