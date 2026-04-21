@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 type Task = {
@@ -16,18 +16,14 @@ export default function Page() {
 const [tasks, setTasks] = useState<Task[]>([]);
 const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
-const [highlightedTasks, setHighlightedTasks] = useState<string[]>([]);
-
-const chatEndRef = useRef<HTMLDivElement | null>(null);
-
-// 🔹 FETCH TASKS
+// 🔹 Fetch tasks
 useEffect(() => {
 fetch("/api/tasks")
 .then(res => res.json())
 .then(setTasks);
 }, []);
 
-// 🔹 GROUP BY DATE
+// 🔹 Group tasks by date
 const groupedTasks = tasks.reduce((acc: Record<string, Task[]>, task) => {
 if (!acc[task.date]) acc[task.date] = [];
 acc[task.date].push(task);
@@ -36,7 +32,7 @@ return acc;
 
 const sortedDates = Object.keys(groupedTasks).sort();
 
-// 🔹 SET CURRENT DATE
+// 🔹 Set current date index
 useEffect(() => {
 if (currentIndex !== null) return;
 if (sortedDates.length === 0) return;
@@ -61,14 +57,10 @@ currentIndex !== null ? sortedDates[currentIndex] : null;
 
 const dayTasks = currentDate ? groupedTasks[currentDate] || [] : [];
 
-// 🔹 PROGRESS
-const totalHours = dayTasks.reduce(
-(sum, task) => sum + task.duration,
-0
-);
-
+// 🔹 Daily progress
+const totalHours = dayTasks.reduce((sum, t) => sum + t.duration, 0);
 const completedHours = dayTasks.reduce(
-(sum, task) => sum + (task.completed ? task.duration : 0),
+(sum, t) => sum + (t.completed ? t.duration : 0),
 0
 );
 
@@ -79,7 +71,7 @@ const sortedDayTasks = [...dayTasks].sort(
 (a, b) => Number(a.completed) - Number(b.completed)
 );
 
-// 🔹 SUBJECT PROGRESS
+// 🔹 Subject progress
 const subjectProgress = Object.entries(
 tasks.reduce((acc: any, task) => {
 if (!acc[task.category]) {
@@ -91,7 +83,7 @@ return acc;
 }, {})
 );
 
-// 🔹 MOVE TASK
+// 🔹 Move task
 const moveTask = async (task: Task, newDate: string) => {
 const res = await fetch("/api/tasks", {
 method: "POST",
@@ -115,7 +107,7 @@ setTasks(prev =>
 
 };
 
-// 🔹 TOGGLE TASK
+// 🔹 Toggle task
 const toggleTask = async (task: Task) => {
 const res = await fetch("/api/tasks", {
 method: "POST",
