@@ -90,24 +90,23 @@ export default function Page() {
     }, {})
   );
 
-  const toggleTask = async (task: Task) => {
-    await fetch("/api/tasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: task._id,
-        completed: !task.completed
-      })
-    });
+  const toggleTask = async (task) => {
+  const res = await fetch("/api/tasks", {
+    method: "POST",
+    body: JSON.stringify({
+      _id: task._id,
+      completed: !task.completed,
+    }),
+  });
 
-    setTasks(prev =>
-      prev.map(t =>
-        t._id === task._id
-          ? { ...t, completed: !t.completed }
-          : t
-      )
-    );
-  };
+  const updated = await res.json();
+
+  setTasks(prev =>
+    prev.map(t =>
+      t._id === updated._id ? updated : t
+    )
+  );
+};
 
   return (
     <main className="min-h-screen bg-black text-white p-6">
