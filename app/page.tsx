@@ -90,19 +90,31 @@ export default function Page() {
     }, {})
   );
 
-  const toggleTask = async (task) => {
+  type Task = {
+  _id: string;
+  title: string;
+  duration: number;
+  completed: boolean;
+  date: string;
+  category: string;
+};
+
+const toggleTask = async (task: Task) => {
   const res = await fetch("/api/tasks", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       _id: task._id,
       completed: !task.completed,
     }),
   });
 
-  const updated = await res.json();
+  const updated: Task = await res.json();
 
-  setTasks(prev =>
-    prev.map(t =>
+  setTasks((prev: Task[]) =>
+    prev.map((t: Task) =>
       t._id === updated._id ? updated : t
     )
   );
