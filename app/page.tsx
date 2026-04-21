@@ -214,8 +214,8 @@ return ( <main className="min-h-screen bg-black text-white p-6"> <div className=
     </div>
 
     {/* TASKS */}
-    <div className="space-y-3">
-      {sortedDayTasks.map(task => (
+     <div className="space-y-3">
+      {sortedDayTasks.map((task: Task) => (
         <div
           key={task._id}
           className={`flex justify-between items-center p-4 rounded-xl border ${
@@ -255,7 +255,5 @@ return ( <main className="min-h-screen bg-black text-white p-6"> <div className=
 
   </div>
 </main>
-```
-
-);
+  );
 }
