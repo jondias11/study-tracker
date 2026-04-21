@@ -68,7 +68,7 @@ export default function Page() {
     (sum: number, task: Task) => sum + (task.completed ? task.duration : 0),
     0
   );
-
+  
   const dailyPercent =
     totalHours === 0 ? 0 : Math.round((completedHours / totalHours) * 100);
 
@@ -89,6 +89,27 @@ export default function Page() {
       return acc;
     }, {})
   );
+  const moveTask = async (task, newDate) => {
+  const res = await fetch("/api/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      _id: task._id,
+      completed: task.completed,
+      date: newDate,
+    }),
+  });
+
+  const updated = await res.json();
+
+  setTasks(prev =>
+    prev.map(t =>
+      t._id === updated._id ? updated : t
+    )
+  );
+};
 
   type Task = {
   _id: string;
