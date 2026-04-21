@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import dayjs from "dayjs";
 
 type Task = {
 _id: string;
@@ -10,6 +9,13 @@ duration: number;
 completed: boolean;
 date: string;
 category: string;
+};
+
+// 🔹 Helper to shift date
+const addDays = (dateStr: string, days: number) => {
+const date = new Date(dateStr);
+date.setDate(date.getDate() + days);
+return date.toISOString().split("T")[0]; // YYYY-MM-DD
 };
 
 export default function Page() {
@@ -23,7 +29,7 @@ fetch("/api/tasks")
 .then(setTasks);
 }, []);
 
-// 🔹 Group tasks by date
+// 🔹 Group by date
 const groupedTasks = tasks.reduce((acc: Record<string, Task[]>, task) => {
 if (!acc[task.date]) acc[task.date] = [];
 acc[task.date].push(task);
@@ -32,13 +38,13 @@ return acc;
 
 const sortedDates = Object.keys(groupedTasks).sort();
 
-// 🔹 Set current date index
+// 🔹 Set current date
 useEffect(() => {
 if (currentIndex !== null) return;
 if (sortedDates.length === 0) return;
 
 ```
-const today = new Date().toLocaleDateString("en-CA");
+const today = new Date().toISOString().split("T")[0];
 
 let index = sortedDates.indexOf(today);
 
@@ -57,8 +63,9 @@ currentIndex !== null ? sortedDates[currentIndex] : null;
 
 const dayTasks = currentDate ? groupedTasks[currentDate] || [] : [];
 
-// 🔹 Daily progress
+// 🔹 Progress
 const totalHours = dayTasks.reduce((sum, t) => sum + t.duration, 0);
+
 const completedHours = dayTasks.reduce(
 (sum, t) => sum + (t.completed ? t.duration : 0),
 0
@@ -207,7 +214,7 @@ return ( <main className="min-h-screen bg-black text-white p-6"> <div className=
     </div>
 
     {/* TASKS */}
-        <div className="space-y-3">
+    <div className="space-y-3">
       {sortedDayTasks.map(task => (
         <div
           key={task._id}
@@ -222,24 +229,14 @@ return ( <main className="min-h-screen bg-black text-white p-6"> <div className=
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() =>
-                moveTask(
-                  task,
-                  dayjs(task.date).subtract(1, "day").format("YYYY-MM-DD")
-                )
-              }
+              onClick={() => moveTask(task, addDays(task.date, -1))}
               className="px-2 py-1 text-xs bg-white/10 rounded"
             >
               ⬅
             </button>
 
             <button
-              onClick={() =>
-                moveTask(
-                  task,
-                  dayjs(task.date).add(1, "day").format("YYYY-MM-DD")
-                )
-              }
+              onClick={() => moveTask(task, addDays(task.date, 1))}
               className="px-2 py-1 text-xs bg-white/10 rounded"
             >
               ➡
@@ -258,5 +255,7 @@ return ( <main className="min-h-screen bg-black text-white p-6"> <div className=
 
   </div>
 </main>
-  );
+```
+
+);
 }
